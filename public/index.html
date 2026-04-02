@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Northstar English Console</title>
-    <link rel="stylesheet" href="/styles.css">
+    <link rel="stylesheet" href="/english-training.css">
   </head>
   <body>
     <div class="app-shell">
@@ -30,39 +30,8 @@
       </header>
 
       <main class="workspace">
-        <section class="panel panel--hero">
-          <div>
-            <p class="eyebrow">Daily focus</p>
-            <h2>Good evening, Ting.</h2>
-            <p class="hero-copy" id="hero-copy">
-              Your fastest gain today is catching meaning from natural-speed listening and responding with cleaner pronunciation.
-            </p>
-          </div>
-          <div class="hero-badges">
-            <span class="badge badge--soft" id="hero-context-badge">Life English</span>
-            <span class="badge badge--dark" id="hero-time-badge">20 min plan</span>
-          </div>
-        </section>
-
-        <section class="panel panel--summary">
-          <div class="summary-card summary-card--signal">
-            <p class="summary-card__label">Main weakness</p>
-            <strong id="summary-weakness">Listening speed</strong>
-            <span id="summary-priority">Pronunciation is the support skill today.</span>
-          </div>
-          <div class="summary-card">
-            <p class="summary-card__label">Why this plan</p>
-            <span id="summary-rationale">Reading and writing are stable, so today shifts your time into live input and spoken output.</span>
-          </div>
-          <div class="summary-card">
-            <p class="summary-card__label">Streak</p>
-            <strong>15 days</strong>
-            <span>Badges and records stay secondary to the training signal.</span>
-          </div>
-        </section>
-
         <section class="view-grid">
-          <section class="console-card" aria-labelledby="homepage-title">
+          <section class="console-card console-card--homepage" aria-labelledby="homepage-title">
             <div class="console-card__header">
               <p class="console-card__step">1. Homepage / training console</p>
               <h2 id="homepage-title">Today's training console</h2>
@@ -80,6 +49,10 @@
                 <span class="context-tag context-tag--active" id="home-context">Life English</span>
                 <span class="context-tag">Pronunciation support</span>
               </div>
+              <a class="primary-action primary-action--jump" href="#sheet-title">Start today's 20-minute plan</a>
+              <p class="support-copy support-copy--inverse">
+                Start here first. Use Quick check only if you need to rebuild today's priority.
+              </p>
             </div>
 
             <div class="feature-block">
@@ -150,7 +123,7 @@
               <div class="skill-checklist" id="skill-checklist">
                 <div class="skill-row">
                   <span>Listening</span>
-                  <div class="dot-meter" data-skill="listening">
+                  <div class="dot-meter">
                     <button type="button" class="dot is-active"></button>
                     <button type="button" class="dot is-active"></button>
                     <button type="button" class="dot"></button>
@@ -160,7 +133,7 @@
                 </div>
                 <div class="skill-row">
                   <span>Speaking</span>
-                  <div class="dot-meter" data-skill="speaking">
+                  <div class="dot-meter">
                     <button type="button" class="dot is-active"></button>
                     <button type="button" class="dot is-active"></button>
                     <button type="button" class="dot"></button>
@@ -170,7 +143,7 @@
                 </div>
                 <div class="skill-row">
                   <span>Reading</span>
-                  <div class="dot-meter" data-skill="reading">
+                  <div class="dot-meter">
                     <button type="button" class="dot is-active"></button>
                     <button type="button" class="dot is-active"></button>
                     <button type="button" class="dot is-active"></button>
@@ -180,7 +153,7 @@
                 </div>
                 <div class="skill-row">
                   <span>Writing</span>
-                  <div class="dot-meter" data-skill="writing">
+                  <div class="dot-meter">
                     <button type="button" class="dot is-active"></button>
                     <button type="button" class="dot is-active"></button>
                     <button type="button" class="dot is-active"></button>
@@ -190,7 +163,7 @@
                 </div>
                 <div class="skill-row">
                   <span>Pronunciation</span>
-                  <div class="dot-meter" data-skill="pronunciation">
+                  <div class="dot-meter">
                     <button type="button" class="dot is-active"></button>
                     <button type="button" class="dot is-active"></button>
                     <button type="button" class="dot"></button>
@@ -210,7 +183,7 @@
               </div>
             </div>
 
-            <button class="primary-action" id="build-plan-button" type="button">Build today's plan</button>
+            <button class="secondary-action secondary-action--plan" id="build-plan-button" type="button">Rebuild today's plan</button>
           </section>
 
           <section class="console-card" aria-labelledby="sheet-title">
@@ -241,9 +214,41 @@
             </div>
           </section>
         </section>
+
+        <section class="panel panel--hero">
+          <div>
+            <p class="eyebrow">Daily focus</p>
+            <h2>Good evening, Ting.</h2>
+            <p class="hero-copy" id="hero-copy">
+              Your fastest gain today is catching meaning from natural-speed listening and responding with cleaner pronunciation.
+            </p>
+          </div>
+          <div class="hero-badges">
+            <span class="badge badge--soft" id="hero-context-badge">Life English</span>
+            <span class="badge badge--dark" id="hero-time-badge">20 min plan</span>
+          </div>
+        </section>
+
+        <section class="panel panel--summary">
+          <div class="summary-card summary-card--signal">
+            <p class="summary-card__label">Main weakness</p>
+            <strong id="summary-weakness">Listening speed</strong>
+            <span id="summary-priority">Pronunciation is the support skill today.</span>
+          </div>
+          <div class="summary-card">
+            <p class="summary-card__label">Why this plan</p>
+            <span id="summary-rationale">Reading and writing are stable, so today shifts your time into live input and spoken output.</span>
+          </div>
+          <div class="summary-card">
+            <p class="summary-card__label">Streak</p>
+            <strong>15 days</strong>
+            <span>Badges and records stay secondary to the training signal.</span>
+          </div>
+        </section>
+
       </main>
     </div>
 
-    <script src="/app.js"></script>
+    <script src="/english-training.js"></script>
   </body>
 </html>

@@ -88,10 +88,7 @@ const plans = {
   },
 };
 
-const state = {
-  context: "life",
-  duration: 20,
-};
+const state = { context: "life", duration: 20 };
 
 const elements = {
   heroCopy: document.querySelector("#hero-copy"),
@@ -138,7 +135,6 @@ function weaknessForContext(contextKey) {
 
 function renderTaskItems(items, target) {
   target.innerHTML = "";
-
   items.forEach((item, index) => {
     const li = document.createElement("li");
     li.innerHTML = `
@@ -172,11 +168,9 @@ function render() {
   elements.heroCopy.textContent = weakness.hero;
   elements.heroContextBadge.textContent = plan.label;
   elements.heroTimeBadge.textContent = `${state.duration}${state.duration === 30 ? "+" : ""} min plan`;
-
   elements.summaryWeakness.textContent = weakness.weakness;
   elements.summaryPriority.textContent = weakness.priority;
   elements.summaryRationale.textContent = plan.rationale;
-
   elements.homeGoal.textContent = goal;
   elements.homeDuration.textContent = `${state.duration}${state.duration === 30 ? "+" : ""} min`;
   elements.homeContext.textContent = plan.label;
@@ -188,7 +182,6 @@ function render() {
 
   renderTaskItems(tasks, elements.homeTaskList);
   renderTaskItems(tasks, elements.taskSheet);
-
   setActivePill(elements.contextChoices, ".choice-pill", state.context, "context");
   setActivePill(elements.timeChoices, ".choice-pill", state.duration, "duration");
 }
