@@ -1,10 +1,14 @@
 const plans = {
   life: {
     label: "Life English",
+    shellLabel: "生活英语",
     mainSkill: "Listening",
     supportSkill: "Pronunciation",
+    supportChip: "发音辅助",
     rationale:
       "Reading and writing are stable, so today moves your time into natural-speed listening and clearer spoken output for everyday situations.",
+    rationaleCn:
+      "阅读和写作先维持，今天把时间集中给听力理解和发音输出，让训练更贴近真实生活场景。",
     goal: {
       10: "Catch the key purpose of one short real-life exchange.",
       20: "Catch key meaning before translating in your head.",
@@ -35,10 +39,14 @@ const plans = {
   },
   business: {
     label: "Business",
+    shellLabel: "商务英语",
     mainSkill: "Speaking",
     supportSkill: "Listening",
+    supportChip: "听力辅助",
     rationale:
       "Business writing is already usable, so today focuses on faster spoken response and clearer pickup during meetings and updates.",
+    rationaleCn:
+      "书面表达先不扩，今天优先收口会议听取重点和即时口语回应，让工作场景更能直接用起来。",
     goal: {
       10: "Pick out one meeting decision quickly and reply with one useful sentence.",
       20: "Catch key meeting intent and answer with clearer spoken English.",
@@ -69,10 +77,14 @@ const plans = {
   },
   data: {
     label: "Data English",
+    shellLabel: "数据岗位英语",
     mainSkill: "Speaking",
     supportSkill: "Pronunciation",
+    supportChip: "发音辅助",
     rationale:
       "You already understand the data concepts, so today’s gain comes from saying them faster and following spoken explanations in real time.",
+    rationaleCn:
+      "数据概念你已经懂，今天把训练放在更快说出来和更稳地跟住实时说明上，而不是再做概念理解。",
     goal: {
       10: "Recognize the key trend in one spoken data update.",
       20: "Explain one chart insight aloud with less hesitation.",
@@ -123,12 +135,12 @@ function getPlan() {
 }
 
 function durationLabel(duration) {
-  return `${duration}${duration === 30 ? "+" : ""}-minute plan`;
+  return `${duration}${duration === 30 ? "+" : ""} 分钟可完成训练`;
 }
 
 function doneMeans(plan) {
   const finalTask = plan.tasks[state.duration][2];
-  return `Done means ${finalTask.check}`;
+  return `完成标准：${finalTask.check}`;
 }
 
 function buildHref(path) {
@@ -145,9 +157,9 @@ function renderEntryPage() {
   document.querySelector("#entry-time-bucket").textContent = durationLabel(state.duration);
   document.querySelector("#entry-goal").textContent = plan.goal[state.duration];
   document.querySelector("#entry-goal-strong").textContent = plan.goal[state.duration];
-  document.querySelector("#entry-context").textContent = plan.label;
-  document.querySelector("#entry-support-skill").textContent = `${plan.supportSkill} support`;
-  document.querySelector("#entry-rationale").textContent = plan.rationale;
+  document.querySelector("#entry-context").textContent = plan.shellLabel;
+  document.querySelector("#entry-support-skill").textContent = plan.supportChip;
+  document.querySelector("#entry-rationale").textContent = plan.rationaleCn;
 
   const startLink = document.querySelector("#start-plan-link");
   startLink.href = buildHref("/training.html");
@@ -204,13 +216,13 @@ function renderResources(items, target) {
 
 function renderTrainingPage() {
   const plan = getPlan();
-  document.querySelector("#training-header-goal").textContent = plan.goal[state.duration];
-  document.querySelector("#training-why").textContent = plan.rationale;
+  document.querySelector("#training-header-goal").textContent = "今天的训练";
+  document.querySelector("#training-why").textContent = plan.rationaleCn;
   document.querySelector("#training-main-skill").textContent = plan.mainSkill;
   document.querySelector("#training-support-skill").textContent = plan.supportSkill;
-  document.querySelector("#training-duration").textContent = `${state.duration}${state.duration === 30 ? "+" : ""} min`;
+  document.querySelector("#training-duration").textContent = `${state.duration}${state.duration === 30 ? "+" : ""} 分钟`;
   document.querySelector("#training-goal").textContent = plan.goal[state.duration];
-  document.querySelector("#training-rationale").textContent = plan.rationale;
+  document.querySelector("#training-rationale").textContent = plan.rationaleCn;
   document.querySelector("#training-done-means").textContent = doneMeans(plan);
   renderTaskItems(plan.tasks[state.duration], document.querySelector("#training-task-list"));
   renderResources(plan.resources, document.querySelector("#resource-list"));
@@ -220,18 +232,18 @@ function renderTrainingPage() {
 
 function renderCompletionPage() {
   const plan = getPlan();
-  const nextBucket = state.duration === 10 ? "20-minute plan" : state.duration === 20 ? "20-minute plan again" : "20-minute reset plan";
+  const nextBucket = state.duration === 10 ? "20 分钟训练" : state.duration === 20 ? "继续 20 分钟训练" : "回到 20 分钟训练";
   document.querySelector("#completion-trained").textContent = `${plan.mainSkill} with ${plan.supportSkill.toLowerCase()} support`;
   document.querySelector("#completion-goal").textContent = plan.goal[state.duration];
   document.querySelector("#completion-next-time").textContent = nextBucket;
   document.querySelector("#completion-reflection").textContent =
     state.duration === 10
-      ? "If today felt too small, move up to 20 minutes tomorrow. If it felt right, repeat the same bucket."
+      ? "如果今天偏短，明天可以上调到 20 分钟；如果刚刚好，就继续保持同样的节奏。"
       : state.duration === 20
-        ? "Keep the same bucket tomorrow unless your schedule is tighter. The goal is another easy completion."
-        : "Drop back to 20 minutes tomorrow if you want an easier repeatable loop.";
+        ? "除非明天时间更紧，不然继续同样的时间桶。目标不是做更多，而是继续稳定完成。"
+        : "如果明天想更容易完成一次，就回到 20 分钟时间桶。";
   document.querySelector("#completion-streak").textContent =
-    "Session complete. Streak, calendar, and badges stay secondary to showing up again tomorrow.";
+    "这一轮已完成。连续天数、日历和徽章都放在次级层，明天继续出现才是主线。";
 }
 
 function init() {

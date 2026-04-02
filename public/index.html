@@ -1,29 +1,29 @@
 <!doctype html>
-<html lang="en">
+<html lang="zh-CN">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Northstar English Console</title>
+    <title>Northstar 英语训练台</title>
     <link rel="stylesheet" href="/styles.css">
   </head>
   <body data-page="entry">
     <div class="app-shell">
       <header class="topbar topbar--compact">
         <div>
-          <p class="eyebrow">Adult English Daily Training Cockpit</p>
-          <h1>One short session. One clear next step.</h1>
+          <p class="eyebrow">成人英语每日训练驾驶舱</p>
+          <h1>每天只做一轮，小步完成就够了。</h1>
           <p class="intro">
-            Open once, see what matters today, and finish one practical training loop that supports living and working independently in Australia.
+            每天打开一次，先认出今天该练什么，再完成一轮可结束的训练，稳步服务你去澳大利亚独立生活和工作的目标。
           </p>
         </div>
         <div class="topbar__meta">
           <div class="meta-pill">
-            <span class="meta-pill__label">Northstar</span>
-            <strong>Live independently in Australia</strong>
+            <span class="meta-pill__label">总目标</span>
+            <strong>去澳大利亚独立生活与工作</strong>
           </div>
           <div class="meta-pill">
-            <span class="meta-pill__label">Today's bucket</span>
-            <strong id="entry-time-bucket">20-minute finishable plan</strong>
+            <span class="meta-pill__label">今日时间桶</span>
+            <strong id="entry-time-bucket">20 分钟可完成训练</strong>
           </div>
         </div>
       </header>
@@ -31,8 +31,8 @@
       <main class="workspace workspace--single">
         <section class="panel panel--focus" aria-labelledby="entry-title">
           <div class="panel__stack">
-            <p class="eyebrow">Today Entry</p>
-            <h2 id="entry-title">Today's training starts here.</h2>
+            <p class="eyebrow">今日入口</p>
+            <h2 id="entry-title">今天先从这里开始。</h2>
             <p class="hero-copy" id="entry-goal">
               Catch key meaning before translating in your head.
             </p>
@@ -43,57 +43,57 @@
           </div>
 
           <div class="entry-card">
-            <p class="mini-label">Today’s goal</p>
+            <p class="mini-label">今日目标</p>
             <strong id="entry-goal-strong">Catch key meaning before translating in your head.</strong>
             <p class="support-copy" id="entry-rationale">
-              Reading and writing are stable, so today moves your time into natural-speed listening and clearer spoken output.
+              今天先收一个最值得练的短板，不把首页变成多入口选择题。
             </p>
-            <a class="primary-action primary-action--wide" id="start-plan-link" href="/training.html">Start today's plan</a>
+            <a class="primary-action primary-action--wide" id="start-plan-link" href="/training.html">开始今天训练</a>
             <p class="support-copy support-copy--tight">
-              This is the main action. Start here first and finish one session before doing anything else.
+              这是唯一主动作。先开始，再完成这一轮，其他都放后面。
             </p>
           </div>
         </section>
 
         <section class="panel panel--subdued" aria-labelledby="quick-check-title">
           <div class="panel__stack">
-            <p class="eyebrow">Quick Check</p>
-            <h2 id="quick-check-title">Only use this if today changed.</h2>
+            <p class="eyebrow">快速重建</p>
+            <h2 id="quick-check-title">只有今天状态变了，才用这里。</h2>
             <p class="support-copy">
-              Rebuild today’s priority when your energy, context, or available time is different from the default plan.
+              当你的精力、场景或时间和默认计划不一样时，再快速重建今天的训练优先级。
             </p>
           </div>
 
           <div class="quick-check-grid">
             <label class="field">
-              <span class="field__label">What feels hardest today?</span>
+              <span class="field__label">今天最卡的是哪一项？</span>
               <select id="qc-skill">
-                <option value="listening">Listening speed</option>
-                <option value="speaking">Speaking response</option>
-                <option value="pronunciation">Pronunciation</option>
+                <option value="listening">Listening 听力速度</option>
+                <option value="speaking">Speaking 口语输出</option>
+                <option value="pronunciation">Pronunciation 发音</option>
               </select>
             </label>
 
             <label class="field">
-              <span class="field__label">What situation matters today?</span>
+              <span class="field__label">今天主要服务什么场景？</span>
               <select id="qc-context">
-                <option value="life">Life English</option>
-                <option value="business">Business</option>
-                <option value="data">Data English</option>
+                <option value="life">生活英语</option>
+                <option value="business">商务英语</option>
+                <option value="data">数据岗位英语</option>
               </select>
             </label>
 
             <label class="field">
-              <span class="field__label">How much time do you have?</span>
+              <span class="field__label">今天有多少时间？</span>
               <select id="qc-duration">
-                <option value="10">10 min</option>
-                <option value="20" selected>20 min</option>
-                <option value="30">30+ min</option>
+                <option value="10">10 分钟</option>
+                <option value="20" selected>20 分钟</option>
+                <option value="30">30 分钟以上</option>
               </select>
             </label>
           </div>
 
-          <button class="secondary-action secondary-action--wide" id="quick-check-button" type="button">Quick check</button>
+          <button class="secondary-action secondary-action--wide" id="quick-check-button" type="button">快速重建今天计划</button>
         </section>
       </main>
     </div>
