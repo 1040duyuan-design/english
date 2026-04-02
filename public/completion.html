@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Session Complete | Northstar English Console</title>
+    <link rel="stylesheet" href="/styles.css">
+  </head>
+  <body data-page="completion">
+    <div class="app-shell">
+      <main class="workspace workspace--single">
+        <section class="panel panel--completion" aria-labelledby="completion-title">
+          <div class="panel__stack">
+            <p class="eyebrow">Completion</p>
+            <h1 id="completion-title">Today’s training is done.</h1>
+            <p class="hero-copy">You finished one clear session. Stop here, keep the win small, and come back tomorrow.</p>
+          </div>
+
+          <div class="completion-grid">
+            <div class="summary-card summary-card--signal">
+              <p class="summary-card__label">You trained</p>
+              <strong id="completion-trained">Listening with pronunciation support</strong>
+              <span id="completion-goal">Catch key meaning before translating in your head.</span>
+            </div>
+            <div class="summary-card">
+              <p class="summary-card__label">Tomorrow suggestion</p>
+              <strong id="completion-next-time">20-minute plan</strong>
+              <span id="completion-reflection">Keep the same bucket if you can repeat today’s rhythm without forcing it.</span>
+            </div>
+          </div>
+
+          <div class="feature-block feature-block--quiet">
+            <p class="mini-label">Light progress signal</p>
+            <p class="support-copy" id="completion-streak">Streak and badges stay secondary. Today’s session is the main win.</p>
+          </div>
+
+          <a class="secondary-action secondary-action--wide" href="/">Back to tomorrow’s entry</a>
+        </section>
+      </main>
+    </div>
+
+    <script src="/app.js"></script>
+  </body>
+</html>

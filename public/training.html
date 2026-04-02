@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Today's Training | Northstar English Console</title>
+    <link rel="stylesheet" href="/styles.css">
+  </head>
+  <body data-page="training">
+    <div class="app-shell">
+      <header class="topbar topbar--compact">
+        <div>
+          <p class="eyebrow">Today's Training</p>
+          <h1 id="training-header-goal">Catch key meaning before translating in your head.</h1>
+          <p class="intro" id="training-why">
+            Reading and writing are stable, so today moves your time into natural-speed listening and clearer spoken output.
+          </p>
+        </div>
+        <div class="topbar__meta">
+          <div class="meta-pill">
+            <span class="meta-pill__label">Main skill</span>
+            <strong id="training-main-skill">Listening</strong>
+          </div>
+          <div class="meta-pill">
+            <span class="meta-pill__label">Support skill</span>
+            <strong id="training-support-skill">Pronunciation</strong>
+          </div>
+        </div>
+      </header>
+
+      <main class="workspace workspace--training">
+        <section class="panel panel--focus" aria-labelledby="training-sheet-title">
+          <div class="section-head">
+            <div>
+              <p class="eyebrow">Training Sheet</p>
+              <h2 id="training-sheet-title">One finishable session for today.</h2>
+            </div>
+            <span class="time-chip" id="training-duration">20 min</span>
+          </div>
+
+          <div class="training-summary">
+            <div class="summary-card summary-card--signal">
+              <p class="summary-card__label">Today’s goal</p>
+              <strong id="training-goal">Catch key meaning before translating in your head.</strong>
+              <span id="training-done-means">Done when one clean repeat is recorded and one response is spoken without reading.</span>
+            </div>
+            <div class="summary-card">
+              <p class="summary-card__label">Why this plan</p>
+              <span id="training-rationale">
+                Reading and writing are stable, so today moves your time into natural-speed listening and clearer spoken output.
+              </span>
+            </div>
+          </div>
+
+          <div class="training-columns">
+            <section class="feature-block">
+              <p class="mini-label">Three actions</p>
+              <ol class="task-sheet" id="training-task-list"></ol>
+            </section>
+
+            <section class="feature-block">
+              <p class="mini-label">Three resources</p>
+              <ol class="resource-list" id="resource-list"></ol>
+            </section>
+          </div>
+
+          <a class="primary-action primary-action--wide" id="complete-link" href="/completion.html">Complete today's session</a>
+        </section>
+      </main>
+    </div>
+
+    <script src="/app.js"></script>
+  </body>
+</html>

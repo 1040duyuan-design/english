@@ -1,37 +1,44 @@
 const plans = {
   life: {
     label: "Life English",
-    rationale: "Reading and writing are stable, so today shifts your time into natural-speed listening and pronunciation for daily situations.",
-    contextCopy: "This scopes today's examples only. It is not site navigation.",
+    mainSkill: "Listening",
+    supportSkill: "Pronunciation",
+    rationale:
+      "Reading and writing are stable, so today moves your time into natural-speed listening and clearer spoken output for everyday situations.",
     goal: {
       10: "Catch the key purpose of one short real-life exchange.",
       20: "Catch key meaning before translating in your head.",
-      30: "Follow a full short exchange and respond without reverting to Chinese planning.",
+      30: "Follow a full short exchange and respond without planning in Chinese first.",
     },
     tasks: {
       10: [
-        { title: "Shadow one short clip", detail: "Repeat one real-life clip until you can track the rhythm.", duration: "4 min", check: "Done when one clear repeat is recorded." },
-        { title: "Quick pronunciation spot-check", detail: "Fix two sounds that still feel too Chinese.", duration: "3 min", check: "Done when both target sounds are cleaner." },
-        { title: "Say one everyday response", detail: "Answer the clip in one natural sentence.", duration: "3 min", check: "Done when you can say it once without reading." },
+        { title: "Shadow one short clip", detail: "Repeat one real-life clip until the rhythm feels familiar.", duration: "4 min", check: "One clear repeat is recorded." },
+        { title: "Fix two pronunciation points", detail: "Clean up the sounds that still feel too Chinese.", duration: "3 min", check: "Both target sounds are cleaner." },
+        { title: "Say one everyday response", detail: "Answer the clip in one natural sentence.", duration: "3 min", check: "You can say it once without reading." },
       ],
       20: [
-        { title: "Shadow one real-life clip", detail: "Repeat the same clip until the rhythm feels natural.", duration: "8 min", check: "Done when one clean output is produced." },
-        { title: "Repeat and record", detail: "Use six lines. Speak, hear, adjust, repeat.", duration: "6 min", check: "Done when one clear output is produced." },
-        { title: "Pronunciation spot-check", detail: "Fix three sounds that still feel too Chinese.", duration: "4 min", check: "Done when target sounds feel less stiff." },
-        { title: "Two-line reflection", detail: "Summarize the situation in your own words.", duration: "2 min", check: "Done when the meaning is spoken without translation." },
+        { title: "Shadow one real-life clip", detail: "Repeat the same clip until the pacing feels natural.", duration: "8 min", check: "One clean output is produced." },
+        { title: "Repeat and record", detail: "Use six lines. Speak, hear, adjust, repeat.", duration: "6 min", check: "One clear output is produced." },
+        { title: "Pronunciation spot-check", detail: "Fix three sounds that still feel too Chinese.", duration: "6 min", check: "Target sounds feel less stiff." },
       ],
       30: [
-        { title: "Shadow two connected clips", detail: "Work through a short exchange with natural pauses and linking.", duration: "10 min", check: "Done when both parts flow without stopping." },
-        { title: "Repeat, record, compare", detail: "Record twice and compare rhythm plus stress.", duration: "8 min", check: "Done when the second take is measurably cleaner." },
-        { title: "Pronunciation repair round", detail: "Focus on three sounds and one sentence melody pattern.", duration: "6 min", check: "Done when all four items are retried." },
-        { title: "Real-life reply drill", detail: "Answer the exchange in two short sentences you could use in Australia.", duration: "6 min", check: "Done when both responses are spoken naturally." },
+        { title: "Shadow two connected clips", detail: "Work through one short exchange with natural pauses and linking.", duration: "10 min", check: "Both parts flow without stopping." },
+        { title: "Record and compare", detail: "Record twice and compare rhythm plus stress.", duration: "10 min", check: "The second take is measurably cleaner." },
+        { title: "Real-life reply drill", detail: "Answer the exchange in two short sentences you could use in Australia.", duration: "10 min", check: "Both responses sound natural." },
       ],
     },
+    resources: [
+      { label: "Today’s listening clip", detail: "Rental inspection small talk: one short Australian exchange." },
+      { label: "Today’s shadow lines", detail: "Six follow-and-repeat lines for booking, timing, and confirmation." },
+      { label: "Today’s output prompt", detail: "Answer: ‘Can you come by this afternoon to look at the place?’" },
+    ],
   },
   business: {
     label: "Business",
-    rationale: "Business writing is already usable, so today focuses on faster spoken response and clearer meeting-listening pickup.",
-    contextCopy: "This scopes today's work examples. It is not a platform-level track selector.",
+    mainSkill: "Speaking",
+    supportSkill: "Listening",
+    rationale:
+      "Business writing is already usable, so today focuses on faster spoken response and clearer pickup during meetings and updates.",
     goal: {
       10: "Pick out one meeting decision quickly and reply with one useful sentence.",
       20: "Catch key meeting intent and answer with clearer spoken English.",
@@ -39,28 +46,33 @@ const plans = {
     },
     tasks: {
       10: [
-        { title: "Listen for one decision point", detail: "Find the main action item in one short business clip.", duration: "4 min", check: "Done when you can say the action item clearly." },
-        { title: "Repeat one meeting response", detail: "Practice one natural reply line aloud.", duration: "3 min", check: "Done when it sounds steady once through." },
-        { title: "Pronunciation tune-up", detail: "Clean up stress in one work phrase.", duration: "3 min", check: "Done when the phrase is no longer flat." },
+        { title: "Listen for one decision point", detail: "Find the main action item in one short business clip.", duration: "4 min", check: "You can say the action item clearly." },
+        { title: "Repeat one meeting response", detail: "Practice one natural reply line aloud.", duration: "3 min", check: "It sounds steady once through." },
+        { title: "Pronunciation tune-up", detail: "Clean up stress in one work phrase.", duration: "3 min", check: "The phrase is no longer flat." },
       ],
       20: [
-        { title: "Shadow one work clip", detail: "Repeat a short meeting segment until the pacing feels controlled.", duration: "8 min", check: "Done when one full pass sounds stable." },
-        { title: "Repeat and record", detail: "Use four practical response lines for meetings or updates.", duration: "6 min", check: "Done when one version is clear and usable." },
-        { title: "Pronunciation clean-up", detail: "Fix stress and linking in work-heavy vocabulary.", duration: "4 min", check: "Done when target terms feel more natural." },
-        { title: "One-line recap", detail: "State the meeting outcome in one plain-English sentence.", duration: "2 min", check: "Done when the sentence is concise and clear." },
+        { title: "Shadow one work clip", detail: "Repeat a short meeting segment until the pacing feels controlled.", duration: "8 min", check: "One full pass sounds stable." },
+        { title: "Repeat and record", detail: "Use four practical response lines for updates and meetings.", duration: "6 min", check: "One version is clear and usable." },
+        { title: "Pronunciation clean-up", detail: "Fix stress and linking in work-heavy vocabulary.", duration: "6 min", check: "Target terms feel more natural." },
       ],
       30: [
-        { title: "Shadow two work exchanges", detail: "Work through one update and one follow-up question.", duration: "10 min", check: "Done when both clips are repeatable without hesitation." },
-        { title: "Record your update twice", detail: "Compare tone, pace, and stress placement.", duration: "8 min", check: "Done when the second take is tighter." },
-        { title: "Pronunciation repair", detail: "Fix awkward work phrases and sentence stress.", duration: "6 min", check: "Done when three target phrases improve." },
-        { title: "Meeting reply drill", detail: "Give a short answer, clarification, and next-step line.", duration: "6 min", check: "Done when all three lines feel work-ready." },
+        { title: "Shadow two work exchanges", detail: "Work through one update and one follow-up question.", duration: "10 min", check: "Both clips are repeatable without hesitation." },
+        { title: "Record your update twice", detail: "Compare tone, pace, and stress placement.", duration: "10 min", check: "The second take is tighter." },
+        { title: "Meeting reply drill", detail: "Give a short answer, clarification, and next-step line.", duration: "10 min", check: "All three lines feel work-ready." },
       ],
     },
+    resources: [
+      { label: "Today’s listening clip", detail: "Short stand-up update with one deadline change." },
+      { label: "Today’s shadow lines", detail: "Six phrases for updates, clarification, and follow-up." },
+      { label: "Today’s output prompt", detail: "Answer: ‘Can you give us a quick status update on this?’" },
+    ],
   },
   data: {
     label: "Data English",
-    rationale: "You already understand data concepts, so today's gain comes from saying them faster and following spoken explanations in real time.",
-    contextCopy: "This only frames today's examples in data-analysis work. It is not a site-wide navigation section.",
+    mainSkill: "Speaking",
+    supportSkill: "Pronunciation",
+    rationale:
+      "You already understand the data concepts, so today’s gain comes from saying them faster and following spoken explanations in real time.",
     goal: {
       10: "Recognize the key trend in one spoken data update.",
       20: "Explain one chart insight aloud with less hesitation.",
@@ -68,69 +80,94 @@ const plans = {
     },
     tasks: {
       10: [
-        { title: "Listen for the key metric", detail: "Catch the one metric that drives the spoken update.", duration: "4 min", check: "Done when you can name the metric and trend." },
-        { title: "Say one insight line", detail: "Explain the trend in one short sentence.", duration: "3 min", check: "Done when it is said once without reading." },
-        { title: "Pronunciation tune-up", detail: "Clean up one data term and one number pattern.", duration: "3 min", check: "Done when both sound more natural." },
+        { title: "Listen for the key metric", detail: "Catch the one metric driving the spoken update.", duration: "4 min", check: "You can name the metric and trend." },
+        { title: "Say one insight line", detail: "Explain the trend in one short sentence.", duration: "3 min", check: "It is said once without reading." },
+        { title: "Pronunciation tune-up", detail: "Clean up one data term and one number pattern.", duration: "3 min", check: "Both sound more natural." },
       ],
       20: [
-        { title: "Shadow one data update", detail: "Repeat a spoken chart summary until the pacing feels natural.", duration: "8 min", check: "Done when one full run is smooth." },
-        { title: "Repeat and record insight lines", detail: "Use four chart or metric explanation lines.", duration: "6 min", check: "Done when one take is clean enough to keep." },
-        { title: "Pronunciation repair", detail: "Fix stress in multi-syllable data vocabulary and number phrasing.", duration: "4 min", check: "Done when target terms feel less rigid." },
-        { title: "Explain the takeaway", detail: "Give one plain-English takeaway from the data point.", duration: "2 min", check: "Done when the insight is clear in one pass." },
+        { title: "Shadow one data update", detail: "Repeat a spoken chart summary until pacing feels natural.", duration: "8 min", check: "One full run is smooth." },
+        { title: "Repeat and record insight lines", detail: "Use four chart or metric explanation lines.", duration: "6 min", check: "One take is clean enough to keep." },
+        { title: "Pronunciation repair", detail: "Fix stress in data vocabulary and number phrasing.", duration: "6 min", check: "Target terms feel less rigid." },
       ],
       30: [
-        { title: "Shadow two spoken data summaries", detail: "Practice one update and one recommendation segment.", duration: "10 min", check: "Done when both clips are repeatable." },
-        { title: "Record your own summary twice", detail: "Compare clarity, flow, and stress on numbers.", duration: "8 min", check: "Done when the second version is tighter." },
-        { title: "Pronunciation repair set", detail: "Fix data terms, percentage phrasing, and one sentence melody issue.", duration: "6 min", check: "Done when all target items are retried." },
-        { title: "Response drill", detail: "Give one recommendation and one risk note based on the data.", duration: "6 min", check: "Done when both points are spoken clearly." },
+        { title: "Shadow two spoken data summaries", detail: "Practice one update and one recommendation segment.", duration: "10 min", check: "Both clips are repeatable." },
+        { title: "Record your own summary twice", detail: "Compare clarity, flow, and stress on numbers.", duration: "10 min", check: "The second version is tighter." },
+        { title: "Response drill", detail: "Give one recommendation and one risk note based on the data.", duration: "10 min", check: "Both points are spoken clearly." },
       ],
     },
+    resources: [
+      { label: "Today’s listening clip", detail: "Short spoken dashboard update with one trend change." },
+      { label: "Today’s shadow lines", detail: "Six phrases for chart trends, drivers, and recommendations." },
+      { label: "Today’s output prompt", detail: "Answer: ‘What is the main takeaway from this week’s numbers?’" },
+    ],
   },
 };
 
-const state = { context: "life", duration: 20 };
+const state = readState();
 
-const elements = {
-  heroCopy: document.querySelector("#hero-copy"),
-  heroContextBadge: document.querySelector("#hero-context-badge"),
-  heroTimeBadge: document.querySelector("#hero-time-badge"),
-  summaryWeakness: document.querySelector("#summary-weakness"),
-  summaryPriority: document.querySelector("#summary-priority"),
-  summaryRationale: document.querySelector("#summary-rationale"),
-  homeGoal: document.querySelector("#home-goal"),
-  homeDuration: document.querySelector("#home-duration"),
-  homeContext: document.querySelector("#home-context"),
-  homeTaskList: document.querySelector("#home-task-list"),
-  contextChoices: document.querySelector("#context-choices"),
-  contextCopy: document.querySelector("#context-copy"),
-  timeChoices: document.querySelector("#time-choices"),
-  buildPlanButton: document.querySelector("#build-plan-button"),
-  sheetGoal: document.querySelector("#sheet-goal"),
-  sheetDuration: document.querySelector("#sheet-duration"),
-  taskSheet: document.querySelector("#task-sheet"),
-  sheetSubtitle: document.querySelector("#sheet-subtitle"),
-  completionCopy: document.querySelector("#completion-copy"),
-};
+function readState() {
+  const params = new URLSearchParams(window.location.search);
+  const saved = JSON.parse(window.localStorage.getItem("englishDailyPlan") || "{}");
+  const context = params.get("context") || saved.context || "life";
+  const duration = Number(params.get("duration") || saved.duration || 20);
+  const blocker = params.get("skill") || saved.skill || "listening";
+  return { context, duration, blocker };
+}
 
-function weaknessForContext(contextKey) {
-  const table = {
-    life: {
-      weakness: "Listening speed",
-      priority: "Pronunciation is the support skill today.",
-      hero: "Your fastest gain today is catching meaning from natural-speed listening and responding with cleaner pronunciation.",
-    },
-    business: {
-      weakness: "Spoken response speed",
-      priority: "Listening remains the support skill for meetings.",
-      hero: "Today is about answering work conversations faster without losing clarity or sounding overly translated.",
-    },
-    data: {
-      weakness: "Spoken explanation flow",
-      priority: "Pronunciation supports clearer metric delivery today.",
-      hero: "Your biggest gain today is turning data understanding into spoken English that lands cleanly in real time.",
-    },
-  };
-  return table[contextKey];
+function writeState() {
+  window.localStorage.setItem("englishDailyPlan", JSON.stringify(state));
+}
+
+function getPlan() {
+  return plans[state.context] || plans.life;
+}
+
+function durationLabel(duration) {
+  return `${duration}${duration === 30 ? "+" : ""}-minute plan`;
+}
+
+function doneMeans(plan) {
+  const finalTask = plan.tasks[state.duration][2];
+  return `Done means ${finalTask.check}`;
+}
+
+function buildHref(path) {
+  const params = new URLSearchParams({
+    context: state.context,
+    duration: String(state.duration),
+    skill: state.blocker,
+  });
+  return `${path}?${params.toString()}`;
+}
+
+function renderEntryPage() {
+  const plan = getPlan();
+  document.querySelector("#entry-time-bucket").textContent = durationLabel(state.duration);
+  document.querySelector("#entry-goal").textContent = plan.goal[state.duration];
+  document.querySelector("#entry-goal-strong").textContent = plan.goal[state.duration];
+  document.querySelector("#entry-context").textContent = plan.label;
+  document.querySelector("#entry-support-skill").textContent = `${plan.supportSkill} support`;
+  document.querySelector("#entry-rationale").textContent = plan.rationale;
+
+  const startLink = document.querySelector("#start-plan-link");
+  startLink.href = buildHref("/training.html");
+
+  const contextSelect = document.querySelector("#qc-context");
+  const durationSelect = document.querySelector("#qc-duration");
+  const skillSelect = document.querySelector("#qc-skill");
+  const quickCheckButton = document.querySelector("#quick-check-button");
+
+  contextSelect.value = state.context;
+  durationSelect.value = String(state.duration);
+  skillSelect.value = state.blocker;
+
+  quickCheckButton.addEventListener("click", () => {
+    state.context = contextSelect.value;
+    state.duration = Number(durationSelect.value);
+    state.blocker = skillSelect.value;
+    writeState();
+    window.location.href = buildHref("/training.html");
+  });
 }
 
 function renderTaskItems(items, target) {
@@ -153,56 +190,56 @@ function renderTaskItems(items, target) {
   });
 }
 
-function setActivePill(container, selector, value, key) {
-  container.querySelectorAll(selector).forEach((button) => {
-    button.classList.toggle("is-active", button.dataset[key] === String(value));
+function renderResources(items, target) {
+  target.innerHTML = "";
+  items.forEach((item, index) => {
+    const li = document.createElement("li");
+    li.innerHTML = `
+      <strong>${index + 1}. ${item.label}</strong>
+      <span>${item.detail}</span>
+    `;
+    target.append(li);
   });
 }
 
-function render() {
-  const plan = plans[state.context];
-  const weakness = weaknessForContext(state.context);
-  const tasks = plan.tasks[state.duration];
-  const goal = plan.goal[state.duration];
+function renderTrainingPage() {
+  const plan = getPlan();
+  document.querySelector("#training-header-goal").textContent = plan.goal[state.duration];
+  document.querySelector("#training-why").textContent = plan.rationale;
+  document.querySelector("#training-main-skill").textContent = plan.mainSkill;
+  document.querySelector("#training-support-skill").textContent = plan.supportSkill;
+  document.querySelector("#training-duration").textContent = `${state.duration}${state.duration === 30 ? "+" : ""} min`;
+  document.querySelector("#training-goal").textContent = plan.goal[state.duration];
+  document.querySelector("#training-rationale").textContent = plan.rationale;
+  document.querySelector("#training-done-means").textContent = doneMeans(plan);
+  renderTaskItems(plan.tasks[state.duration], document.querySelector("#training-task-list"));
+  renderResources(plan.resources, document.querySelector("#resource-list"));
 
-  elements.heroCopy.textContent = weakness.hero;
-  elements.heroContextBadge.textContent = plan.label;
-  elements.heroTimeBadge.textContent = `${state.duration}${state.duration === 30 ? "+" : ""} min plan`;
-  elements.summaryWeakness.textContent = weakness.weakness;
-  elements.summaryPriority.textContent = weakness.priority;
-  elements.summaryRationale.textContent = plan.rationale;
-  elements.homeGoal.textContent = goal;
-  elements.homeDuration.textContent = `${state.duration}${state.duration === 30 ? "+" : ""} min`;
-  elements.homeContext.textContent = plan.label;
-  elements.contextCopy.textContent = plan.contextCopy;
-  elements.sheetGoal.textContent = goal;
-  elements.sheetDuration.textContent = `${state.duration}${state.duration === 30 ? "+" : ""} min`;
-  elements.sheetSubtitle.textContent = `One finishable ${state.duration}${state.duration === 30 ? "+" : ""}-minute session, not a chapter list.`;
-  elements.completionCopy.textContent = `Log today, keep the streak, and adjust tomorrow's ${state.duration}${state.duration === 30 ? "+" : ""}-minute bucket if needed. Badges remain secondary to the training signal.`;
-
-  renderTaskItems(tasks, elements.homeTaskList);
-  renderTaskItems(tasks, elements.taskSheet);
-  setActivePill(elements.contextChoices, ".choice-pill", state.context, "context");
-  setActivePill(elements.timeChoices, ".choice-pill", state.duration, "duration");
+  document.querySelector("#complete-link").href = buildHref("/completion.html");
 }
 
-elements.contextChoices.addEventListener("click", (event) => {
-  const button = event.target.closest("[data-context]");
-  if (!button) return;
-  state.context = button.dataset.context;
-  render();
-});
+function renderCompletionPage() {
+  const plan = getPlan();
+  const nextBucket = state.duration === 10 ? "20-minute plan" : state.duration === 20 ? "20-minute plan again" : "20-minute reset plan";
+  document.querySelector("#completion-trained").textContent = `${plan.mainSkill} with ${plan.supportSkill.toLowerCase()} support`;
+  document.querySelector("#completion-goal").textContent = plan.goal[state.duration];
+  document.querySelector("#completion-next-time").textContent = nextBucket;
+  document.querySelector("#completion-reflection").textContent =
+    state.duration === 10
+      ? "If today felt too small, move up to 20 minutes tomorrow. If it felt right, repeat the same bucket."
+      : state.duration === 20
+        ? "Keep the same bucket tomorrow unless your schedule is tighter. The goal is another easy completion."
+        : "Drop back to 20 minutes tomorrow if you want an easier repeatable loop.";
+  document.querySelector("#completion-streak").textContent =
+    "Session complete. Streak, calendar, and badges stay secondary to showing up again tomorrow.";
+}
 
-elements.timeChoices.addEventListener("click", (event) => {
-  const button = event.target.closest("[data-duration]");
-  if (!button) return;
-  state.duration = Number(button.dataset.duration);
-  render();
-});
+function init() {
+  writeState();
+  const page = document.body.dataset.page;
+  if (page === "entry") renderEntryPage();
+  if (page === "training") renderTrainingPage();
+  if (page === "completion") renderCompletionPage();
+}
 
-elements.buildPlanButton.addEventListener("click", () => {
-  render();
-  document.querySelector("#sheet-title")?.scrollIntoView({ behavior: "smooth", block: "start" });
-});
-
-render();
+init();
