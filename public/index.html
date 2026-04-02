@@ -1,0 +1,249 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Northstar English Console</title>
+    <link rel="stylesheet" href="/styles.css">
+  </head>
+  <body>
+    <div class="app-shell">
+      <header class="topbar">
+        <div>
+          <p class="eyebrow">Adult English Training Console</p>
+          <h1>Train the skill that matters today.</h1>
+          <p class="intro">
+            A professional practice space for adults improving life, business, and data-work English with
+            time-sized daily plans.
+          </p>
+        </div>
+        <div class="topbar__meta">
+          <div class="meta-pill">
+            <span class="meta-pill__label">Primary goal</span>
+            <strong>Live independently in Australia</strong>
+          </div>
+          <div class="meta-pill">
+            <span class="meta-pill__label">Today</span>
+            <strong>20-minute finishable plan</strong>
+          </div>
+        </div>
+      </header>
+
+      <main class="workspace">
+        <section class="panel panel--hero">
+          <div>
+            <p class="eyebrow">Daily focus</p>
+            <h2>Good evening, Ting.</h2>
+            <p class="hero-copy" id="hero-copy">
+              Your fastest gain today is catching meaning from natural-speed listening and responding with cleaner pronunciation.
+            </p>
+          </div>
+          <div class="hero-badges">
+            <span class="badge badge--soft" id="hero-context-badge">Life English</span>
+            <span class="badge badge--dark" id="hero-time-badge">20 min plan</span>
+          </div>
+        </section>
+
+        <section class="panel panel--summary">
+          <div class="summary-card summary-card--signal">
+            <p class="summary-card__label">Main weakness</p>
+            <strong id="summary-weakness">Listening speed</strong>
+            <span id="summary-priority">Pronunciation is the support skill today.</span>
+          </div>
+          <div class="summary-card">
+            <p class="summary-card__label">Why this plan</p>
+            <span id="summary-rationale">Reading and writing are stable, so today shifts your time into live input and spoken output.</span>
+          </div>
+          <div class="summary-card">
+            <p class="summary-card__label">Streak</p>
+            <strong>15 days</strong>
+            <span>Badges and records stay secondary to the training signal.</span>
+          </div>
+        </section>
+
+        <section class="view-grid">
+          <section class="console-card" aria-labelledby="homepage-title">
+            <div class="console-card__header">
+              <p class="console-card__step">1. Homepage / training console</p>
+              <h2 id="homepage-title">Today's training console</h2>
+            </div>
+
+            <div class="feature-block feature-block--signal">
+              <div class="feature-block__row">
+                <div>
+                  <p class="mini-label">Today's goal</p>
+                  <strong id="home-goal">Catch key meaning before translating in your head.</strong>
+                </div>
+                <span class="time-chip" id="home-duration">20 min</span>
+              </div>
+              <div class="context-tags">
+                <span class="context-tag context-tag--active" id="home-context">Life English</span>
+                <span class="context-tag">Pronunciation support</span>
+              </div>
+            </div>
+
+            <div class="feature-block">
+              <p class="mini-label">Today's executable list</p>
+              <ol class="task-list" id="home-task-list"></ol>
+            </div>
+
+            <div class="feature-block">
+              <p class="mini-label">Signals, not dashboard modules</p>
+              <div class="signal-grid">
+                <div class="signal-row">
+                  <span>Listening</span>
+                  <div class="signal-bar"><span style="width: 36%"></span></div>
+                  <small>priority today</small>
+                </div>
+                <div class="signal-row">
+                  <span>Speaking</span>
+                  <div class="signal-bar"><span style="width: 44%"></span></div>
+                  <small>support focus</small>
+                </div>
+                <div class="signal-row">
+                  <span>Reading</span>
+                  <div class="signal-bar"><span style="width: 82%"></span></div>
+                  <small>maintenance only</small>
+                </div>
+                <div class="signal-row">
+                  <span>Writing</span>
+                  <div class="signal-bar"><span style="width: 74%"></span></div>
+                  <small>maintenance only</small>
+                </div>
+                <div class="signal-row">
+                  <span>Pronunciation</span>
+                  <div class="signal-bar signal-bar--accent"><span style="width: 42%"></span></div>
+                  <small>paired with listening</small>
+                </div>
+              </div>
+            </div>
+
+            <div class="feature-block feature-block--quiet">
+              <p class="mini-label">Consistency</p>
+              <div class="streak-grid" aria-hidden="true">
+                <span></span><span></span><span class="is-active"></span><span></span><span class="is-active"></span><span></span><span class="is-active"></span>
+                <span></span><span class="is-active"></span><span></span><span></span><span class="is-active"></span><span></span><span></span>
+              </div>
+              <p class="support-copy">Record, calendar, and badges stay in support of today's plan.</p>
+            </div>
+          </section>
+
+          <section class="console-card" aria-labelledby="check-title">
+            <div class="console-card__header">
+              <p class="console-card__step">2. Quick check</p>
+              <h2 id="check-title">Quick check for today's priority</h2>
+              <p class="support-copy">Not a full assessment. Just enough to set the next best session.</p>
+            </div>
+
+            <div class="feature-block">
+              <p class="mini-label">Today's context</p>
+              <div class="choice-row" id="context-choices">
+                <button class="choice-pill is-active" type="button" data-context="life">Life English</button>
+                <button class="choice-pill" type="button" data-context="business">Business</button>
+                <button class="choice-pill" type="button" data-context="data">Data English</button>
+              </div>
+              <p class="support-copy" id="context-copy">This scopes today's examples only. It is not site navigation.</p>
+            </div>
+
+            <div class="feature-block">
+              <p class="mini-label">What needs help today?</p>
+              <div class="skill-checklist" id="skill-checklist">
+                <div class="skill-row">
+                  <span>Listening</span>
+                  <div class="dot-meter" data-skill="listening">
+                    <button type="button" class="dot is-active"></button>
+                    <button type="button" class="dot is-active"></button>
+                    <button type="button" class="dot"></button>
+                    <button type="button" class="dot"></button>
+                    <button type="button" class="dot"></button>
+                  </div>
+                </div>
+                <div class="skill-row">
+                  <span>Speaking</span>
+                  <div class="dot-meter" data-skill="speaking">
+                    <button type="button" class="dot is-active"></button>
+                    <button type="button" class="dot is-active"></button>
+                    <button type="button" class="dot"></button>
+                    <button type="button" class="dot"></button>
+                    <button type="button" class="dot"></button>
+                  </div>
+                </div>
+                <div class="skill-row">
+                  <span>Reading</span>
+                  <div class="dot-meter" data-skill="reading">
+                    <button type="button" class="dot is-active"></button>
+                    <button type="button" class="dot is-active"></button>
+                    <button type="button" class="dot is-active"></button>
+                    <button type="button" class="dot is-active"></button>
+                    <button type="button" class="dot"></button>
+                  </div>
+                </div>
+                <div class="skill-row">
+                  <span>Writing</span>
+                  <div class="dot-meter" data-skill="writing">
+                    <button type="button" class="dot is-active"></button>
+                    <button type="button" class="dot is-active"></button>
+                    <button type="button" class="dot is-active"></button>
+                    <button type="button" class="dot"></button>
+                    <button type="button" class="dot"></button>
+                  </div>
+                </div>
+                <div class="skill-row">
+                  <span>Pronunciation</span>
+                  <div class="dot-meter" data-skill="pronunciation">
+                    <button type="button" class="dot is-active"></button>
+                    <button type="button" class="dot is-active"></button>
+                    <button type="button" class="dot"></button>
+                    <button type="button" class="dot"></button>
+                    <button type="button" class="dot"></button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="feature-block">
+              <p class="mini-label">How much time do you actually have?</p>
+              <div class="choice-row" id="time-choices">
+                <button class="choice-pill" type="button" data-duration="10">10 min</button>
+                <button class="choice-pill is-active" type="button" data-duration="20">20 min</button>
+                <button class="choice-pill" type="button" data-duration="30">30+ min</button>
+              </div>
+            </div>
+
+            <button class="primary-action" id="build-plan-button" type="button">Build today's plan</button>
+          </section>
+
+          <section class="console-card" aria-labelledby="sheet-title">
+            <div class="console-card__header">
+              <p class="console-card__step">3. Training sheet</p>
+              <h2 id="sheet-title">Today's training sheet</h2>
+              <p class="support-copy" id="sheet-subtitle">One finishable session, not a chapter list.</p>
+            </div>
+
+            <div class="feature-block feature-block--signal">
+              <div class="feature-block__row">
+                <div>
+                  <p class="mini-label">Today's goal</p>
+                  <strong id="sheet-goal">Catch key meaning before translating in your head.</strong>
+                </div>
+                <span class="time-chip" id="sheet-duration">20 min</span>
+              </div>
+            </div>
+
+            <ol class="task-sheet" id="task-sheet"></ol>
+
+            <div class="feature-block feature-block--quiet">
+              <p class="mini-label">After completion</p>
+              <p class="support-copy" id="completion-copy">
+                Log today, keep the streak, and adjust tomorrow's time bucket if needed. Badges remain secondary to the training signal.
+              </p>
+              <button class="secondary-action" type="button">Complete today's session</button>
+            </div>
+          </section>
+        </section>
+      </main>
+    </div>
+
+    <script src="/app.js"></script>
+  </body>
+</html>

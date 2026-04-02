@@ -1,0 +1,11 @@
+{
+  "name": "english-training-frontend",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Adult English training console frontend",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node --watch server.js"
+  }
+}
