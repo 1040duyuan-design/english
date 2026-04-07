@@ -19,11 +19,11 @@
         <div class="topbar__meta">
           <div class="meta-pill">
             <span class="meta-pill__label">主技能</span>
-            <strong id="training-main-skill">Listening</strong>
+            <strong id="training-main-skill-pill">Listening</strong>
           </div>
           <div class="meta-pill">
             <span class="meta-pill__label">辅助技能</span>
-            <strong id="training-support-skill">Pronunciation</strong>
+            <strong id="training-support-skill-pill">Pronunciation</strong>
           </div>
         </div>
       </header>
@@ -34,21 +34,31 @@
             <div>
               <p class="eyebrow">训练单</p>
               <h2 id="training-sheet-title">今天这一轮，做完就可以结束。</h2>
+              <p class="support-copy" id="training-scene">澳洲真实场景会显示在这里。</p>
             </div>
             <span class="time-chip" id="training-duration">20 分钟</span>
           </div>
 
-          <div class="training-summary">
-            <div class="summary-card summary-card--signal">
-              <p class="summary-card__label">今日目标</p>
+          <div class="training-brief">
+            <div class="brief-card brief-card--signal">
+              <p class="summary-card__label">Today’s goal</p>
               <strong id="training-goal">Catch key meaning before translating in your head.</strong>
-              <span id="training-done-means">完成标准：One clean repeat is recorded and one response is spoken without reading.</span>
             </div>
-            <div class="summary-card">
-              <p class="summary-card__label">为什么今天练这个</p>
-              <span id="training-rationale">
-                今天先把最该练的短板收掉，不把训练页重新变成课程列表。
-              </span>
+            <div class="brief-card">
+              <p class="summary-card__label">Main skill</p>
+              <strong id="training-main-skill">Listening</strong>
+            </div>
+            <div class="brief-card">
+              <p class="summary-card__label">Support skill</p>
+              <strong id="training-support-skill">Pronunciation</strong>
+            </div>
+            <div class="brief-card">
+              <p class="summary-card__label">Duration</p>
+              <strong id="training-duration-brief">20 分钟</strong>
+            </div>
+            <div class="brief-card">
+              <p class="summary-card__label">Done means</p>
+              <strong id="training-done-means">完成后你能说出今天这轮做成了什么。</strong>
             </div>
           </div>
 
@@ -64,7 +74,13 @@
             </section>
           </div>
 
-          <a class="primary-action primary-action--wide" id="complete-link" href="/completion.html">完成今天训练</a>
+          <div class="feature-block feature-block--signal completion-cta">
+            <p class="mini-label">完成区</p>
+            <p class="support-copy" id="training-finish-copy">
+              做完上面 3 个动作后，今天这轮就可以结束。
+            </p>
+            <a class="primary-action primary-action--wide" id="complete-link" href="/completion.html">完成今天训练</a>
+          </div>
         </section>
       </main>
     </div>

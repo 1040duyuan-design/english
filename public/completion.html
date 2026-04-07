@@ -13,25 +13,25 @@
           <div class="panel__stack">
             <p class="eyebrow">完成页</p>
             <h1 id="completion-title">今天这轮已经完成。</h1>
-            <p class="hero-copy">这一轮到这里就结束。先停在这里，把完成感留下，明天再继续。</p>
+            <p class="hero-copy" id="completion-scene">今天练的是一个具体澳洲场景，而不是泛练习。</p>
           </div>
 
           <div class="completion-grid">
             <div class="summary-card summary-card--signal">
-              <p class="summary-card__label">今天练了什么</p>
-              <strong id="completion-trained">Listening with pronunciation support</strong>
-              <span id="completion-goal">Catch key meaning before translating in your head.</span>
+              <p class="summary-card__label">今天完成了哪 3 步</p>
+              <ol class="completion-list" id="completion-steps"></ol>
             </div>
             <div class="summary-card">
-              <p class="summary-card__label">明天建议</p>
-              <strong id="completion-next-time">20 分钟训练</strong>
-              <span id="completion-reflection">如果今天的节奏刚刚好，明天就继续保持同样的时间桶。</span>
+              <p class="summary-card__label">今天最该记住的一句话</p>
+              <strong id="completion-key-line">I'd like to book an inspection for Saturday morning.</strong>
+              <span>把这句留下，明天继续用得上。</span>
             </div>
           </div>
 
-          <div class="feature-block feature-block--quiet">
-            <p class="mini-label">轻量进度提示</p>
-            <p class="support-copy" id="completion-streak">连续天数和徽章都只是辅助。今天能完成这一轮，才是主结果。</p>
+          <div class="feature-block feature-block--quiet completion-next">
+            <p class="mini-label">明天建议继续什么</p>
+            <strong id="completion-next-time">20 分钟训练</strong>
+            <p class="support-copy" id="completion-reflection">如果今天的节奏刚刚好，明天就继续保持同样的时间桶。</p>
           </div>
 
           <a class="secondary-action secondary-action--wide" href="/">回到明天的入口</a>

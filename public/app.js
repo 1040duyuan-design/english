@@ -5,37 +5,177 @@ const plans = {
     mainSkill: "Listening",
     supportSkill: "Pronunciation",
     supportChip: "发音辅助",
-    rationale:
-      "Reading and writing are stable, so today moves your time into natural-speed listening and clearer spoken output for everyday situations.",
-    rationaleCn:
-      "阅读和写作先维持，今天把时间集中给听力理解和发音输出，让训练更贴近真实生活场景。",
+    sceneCn: "澳洲租房：打电话预约看房",
+    sceneEn: "Calling a landlord to book a rental inspection",
+    whyCn: "今天不做泛听力。只练一个你去澳洲独立生活时真的会遇到的电话场景：预约看房。",
     goal: {
-      10: "Catch the key purpose of one short real-life exchange.",
-      20: "Catch key meaning before translating in your head.",
-      30: "Follow a full short exchange and respond without planning in Chinese first.",
+      10: "听懂并说出一次预约看房电话里的关键信息。",
+      20: "听懂并说出一次预约看房电话里的关键信息。",
+      30: "完整跟住一次预约看房电话，并给出自己的英文回应。",
     },
-    tasks: {
-      10: [
-        { title: "Shadow one short clip", detail: "Repeat one real-life clip until the rhythm feels familiar.", duration: "4 min", check: "One clear repeat is recorded." },
-        { title: "Fix two pronunciation points", detail: "Clean up the sounds that still feel too Chinese.", duration: "3 min", check: "Both target sounds are cleaner." },
-        { title: "Say one everyday response", detail: "Answer the clip in one natural sentence.", duration: "3 min", check: "You can say it once without reading." },
-      ],
-      20: [
-        { title: "Shadow one real-life clip", detail: "Repeat the same clip until the pacing feels natural.", duration: "8 min", check: "One clean output is produced." },
-        { title: "Repeat and record", detail: "Use six lines. Speak, hear, adjust, repeat.", duration: "6 min", check: "One clear output is produced." },
-        { title: "Pronunciation spot-check", detail: "Fix three sounds that still feel too Chinese.", duration: "6 min", check: "Target sounds feel less stiff." },
-      ],
-      30: [
-        { title: "Shadow two connected clips", detail: "Work through one short exchange with natural pauses and linking.", duration: "10 min", check: "Both parts flow without stopping." },
-        { title: "Record and compare", detail: "Record twice and compare rhythm plus stress.", duration: "10 min", check: "The second take is measurably cleaner." },
-        { title: "Real-life reply drill", detail: "Answer the exchange in two short sentences you could use in Australia.", duration: "10 min", check: "Both responses sound natural." },
-      ],
+    doneMeans: {
+      10: "你能说出这通电话在安排什么，并完整说出 1 句预约请求。",
+      20: "你能说出这通电话在安排什么，并完整说出 1 句预约请求。",
+      30: "你能听懂时间地点，并完成 1 次不照读的英文回应。",
     },
     resources: [
-      { label: "Today’s listening clip", detail: "Rental inspection small talk: one short Australian exchange." },
-      { label: "Today’s shadow lines", detail: "Six follow-and-repeat lines for booking, timing, and confirmation." },
-      { label: "Today’s output prompt", detail: "Answer: ‘Can you come by this afternoon to look at the place?’" },
+      {
+        id: "audio",
+        type: "Audio",
+        content: "Hi, it's Alex from Harbour Rentals. We have an inspection on Saturday at 10:30 on King Street.",
+        why: "先把真实电话里的时间、地点和下一步听出来。",
+        cta: "开始听这段音频",
+        helper: "先完整听 1 遍，再听第 2 遍并抓 `time / place / next step`。",
+        speechText: "Hi, it's Alex from Harbour Rentals. We have an inspection on Saturday at ten thirty on King Street.",
+      },
+      {
+        id: "sentence",
+        type: "Key sentence",
+        content: "I'd like to book an inspection for Saturday morning.",
+        why: "这是今天最该说出口的一句关键请求。",
+        cta: "开始跟读这句话",
+        helper: "先跟读 3 次，第 4 次不看文本直接说。",
+        speechText: "I'd like to book an inspection for Saturday morning.",
+      },
+      {
+        id: "task",
+        type: "Quick response task",
+        content: "Can you make it on Saturday morning?",
+        why: "把模仿推进成一次最小真实回应，而不是只重复材料。",
+        cta: "开始回答这个问题",
+        helper: "请直接用 1 句英文回应，不需要长答案。",
+        prompt: "Yes, Saturday morning works for me.",
+      },
     ],
+    actions: {
+      10: [
+        {
+          id: "action-1",
+          resourceId: "audio",
+          name: "听懂一段看房电话",
+          why: "先抓住这通电话到底在安排什么，不先纠结每个词。",
+          steps: [
+            "点击下面的 Audio 资源。",
+            "完整听 1 遍，不暂停。",
+            "第 2 遍只记 `time / place / next step`。",
+          ],
+          duration: "4 分钟",
+          done: "你能用 1 句中文或英文说出这通电话在安排什么。",
+        },
+        {
+          id: "action-2",
+          resourceId: "sentence",
+          name: "跟说今天最关键的一句",
+          why: "把“听懂”推进到“自己能开口说出来”。",
+          steps: [
+            "点击下面的 Key sentence 资源。",
+            "先跟读 2 次。",
+            "最后 1 次不看文本直接说。",
+          ],
+          duration: "3 分钟",
+          done: "你能完整说出这句预约请求。",
+        },
+        {
+          id: "action-3",
+          resourceId: "task",
+          name: "做一次最小回应",
+          why: "避免停在照读，收成 1 次真实输出。",
+          steps: [
+            "点击下面的 Quick response task。",
+            "读题 1 次。",
+            "立刻用 1 句英文回应。",
+          ],
+          duration: "3 分钟",
+          done: "你已经完成 1 次不照读的英文回应。",
+        },
+      ],
+      20: [
+        {
+          id: "action-1",
+          resourceId: "audio",
+          name: "听懂一段看房电话",
+          why: "先把真实电话里的时间、地点和安排抓清楚，避免一上来就翻译。",
+          steps: [
+            "点击下面的 Audio 资源。",
+            "完整听 1 遍，不暂停。",
+            "第 2 遍只记 `time / place / next step`。",
+          ],
+          duration: "6 分钟",
+          done: "你能用 1 句中文或英文说出这通电话在安排什么。",
+        },
+        {
+          id: "action-2",
+          resourceId: "sentence",
+          name: "跟说今天最关键的一句",
+          why: "把“听懂”推进到“自己能开口”，收住今天最该说出口的一句话。",
+          steps: [
+            "点击下面的 Key sentence 资源。",
+            "先跟读 3 次。",
+            "第 4 次不看文本直接说。",
+          ],
+          duration: "5 分钟",
+          done: "你能完整说出这句关键请求。",
+        },
+        {
+          id: "action-3",
+          resourceId: "task",
+          name: "做一次最小真实回应",
+          why: "从模仿变成真实输出，确认今天这轮真的练到了可用表达。",
+          steps: [
+            "点击下面的 Quick response task。",
+            "读题 1 次。",
+            "只用 1 句自己的英文回应。",
+          ],
+          duration: "7 分钟",
+          done: "你已经完成 1 次不照读的真实回应。",
+        },
+      ],
+      30: [
+        {
+          id: "action-1",
+          resourceId: "audio",
+          name: "听懂并复述看房电话",
+          why: "先稳住这类真实电话里的关键信息，再进入后续开口。",
+          steps: [
+            "点击下面的 Audio 资源。",
+            "完整听 2 遍。",
+            "第 3 遍后用 1 句英文复述这通电话在安排什么。",
+          ],
+          duration: "10 分钟",
+          done: "你能用 1 句英文复述时间、地点和安排。",
+        },
+        {
+          id: "action-2",
+          resourceId: "sentence",
+          name: "跟说并稳定关键请求",
+          why: "把这句请求说稳，减少临场时卡住的概率。",
+          steps: [
+            "点击下面的 Key sentence 资源。",
+            "跟读 4 次。",
+            "最后 2 次不看文本直接说。",
+          ],
+          duration: "8 分钟",
+          done: "你能稳定说出这句关键请求，不需要看文本。",
+        },
+        {
+          id: "action-3",
+          resourceId: "task",
+          name: "做一次完整口头回应",
+          why: "让今天的训练真正落到你自己的英文输出上。",
+          steps: [
+            "点击下面的 Quick response task。",
+            "先口头回答 1 次。",
+            "再重说 1 次，让语气更自然。",
+          ],
+          duration: "12 分钟",
+          done: "你已经完成 1 次自己的口头回应，并能重说得更顺。",
+        },
+      ],
+    },
+    completion: {
+      keySentence: "I'd like to book an inspection for Saturday morning.",
+      tomorrow: "明天继续生活线，但换成“确认交通路线”或“超市现场沟通”。",
+    },
   },
   business: {
     label: "Business",
@@ -43,37 +183,141 @@ const plans = {
     mainSkill: "Speaking",
     supportSkill: "Listening",
     supportChip: "听力辅助",
-    rationale:
-      "Business writing is already usable, so today focuses on faster spoken response and clearer pickup during meetings and updates.",
-    rationaleCn:
-      "书面表达先不扩，今天优先收口会议听取重点和即时口语回应，让工作场景更能直接用起来。",
+    sceneCn: "澳洲职场：和同事确认 meeting 更新时间",
+    sceneEn: "Clarifying a meeting update with a colleague",
+    whyCn: "今天不做泛商务英语，只练一个澳洲职场里最常见的沟通动作：听懂更新并给出简短回应。",
     goal: {
-      10: "Pick out one meeting decision quickly and reply with one useful sentence.",
-      20: "Catch key meeting intent and answer with clearer spoken English.",
-      30: "Track a short work discussion and respond with confident, natural phrasing.",
+      10: "听懂一次简短会议更新，并给出 1 句工作回应。",
+      20: "听懂一次简短会议更新，并给出 1 句工作回应。",
+      30: "跟住一次会议更新，并完成 1 次自己的口头回应。",
     },
-    tasks: {
-      10: [
-        { title: "Listen for one decision point", detail: "Find the main action item in one short business clip.", duration: "4 min", check: "You can say the action item clearly." },
-        { title: "Repeat one meeting response", detail: "Practice one natural reply line aloud.", duration: "3 min", check: "It sounds steady once through." },
-        { title: "Pronunciation tune-up", detail: "Clean up stress in one work phrase.", duration: "3 min", check: "The phrase is no longer flat." },
-      ],
-      20: [
-        { title: "Shadow one work clip", detail: "Repeat a short meeting segment until the pacing feels controlled.", duration: "8 min", check: "One full pass sounds stable." },
-        { title: "Repeat and record", detail: "Use four practical response lines for updates and meetings.", duration: "6 min", check: "One version is clear and usable." },
-        { title: "Pronunciation clean-up", detail: "Fix stress and linking in work-heavy vocabulary.", duration: "6 min", check: "Target terms feel more natural." },
-      ],
-      30: [
-        { title: "Shadow two work exchanges", detail: "Work through one update and one follow-up question.", duration: "10 min", check: "Both clips are repeatable without hesitation." },
-        { title: "Record your update twice", detail: "Compare tone, pace, and stress placement.", duration: "10 min", check: "The second take is tighter." },
-        { title: "Meeting reply drill", detail: "Give a short answer, clarification, and next-step line.", duration: "10 min", check: "All three lines feel work-ready." },
-      ],
+    doneMeans: {
+      10: "你能说出这次更新的核心变化，并给出 1 句工作回应。",
+      20: "你能说出这次更新的核心变化，并给出 1 句工作回应。",
+      30: "你能复述更新重点，并完成 1 次自己的会议回应。",
     },
     resources: [
-      { label: "Today’s listening clip", detail: "Short stand-up update with one deadline change." },
-      { label: "Today’s shadow lines", detail: "Six phrases for updates, clarification, and follow-up." },
-      { label: "Today’s output prompt", detail: "Answer: ‘Can you give us a quick status update on this?’" },
+      {
+        id: "audio",
+        type: "Audio",
+        content: "We moved the client review to Thursday afternoon, so I need the updated deck by noon.",
+        why: "先听懂会议更新里的时间变化和下一步动作。",
+        cta: "开始听这段更新",
+        helper: "先完整听 1 遍，再听第 2 遍并抓 `time / task / owner`。",
+        speechText: "We moved the client review to Thursday afternoon, so I need the updated deck by noon.",
+      },
+      {
+        id: "sentence",
+        type: "Key sentence",
+        content: "Got it. I'll send the updated deck before noon.",
+        why: "这是今天最该说出口的一句确认回应。",
+        cta: "开始跟读这句话",
+        helper: "先跟读 3 次，第 4 次不看文本直接说。",
+        speechText: "Got it. I'll send the updated deck before noon.",
+      },
+      {
+        id: "task",
+        type: "Quick response task",
+        content: "Can you also add the new churn slide before the review?",
+        why: "把理解推进成一次最小工作回应。",
+        cta: "开始回答这个问题",
+        helper: "请直接用 1 句英文确认你会怎么做。",
+        prompt: "Yes, I'll add it before I send the deck.",
+      },
     ],
+    actions: {
+      10: [
+        {
+          id: "action-1",
+          resourceId: "audio",
+          name: "听懂一段会议更新",
+          why: "先抓住时间变化和下一步动作，不纠结每个细节。",
+          steps: ["点击 Audio 资源。", "完整听 1 遍。", "第 2 遍只抓 `time / task / owner`。"],
+          duration: "4 分钟",
+          done: "你能说出更新里发生了什么变化。",
+        },
+        {
+          id: "action-2",
+          resourceId: "sentence",
+          name: "跟说一句确认回应",
+          why: "把理解收成一句你能直接在会议里说的回应。",
+          steps: ["点击 Key sentence。", "跟读 2 次。", "最后 1 次不看文本说。"],
+          duration: "3 分钟",
+          done: "你能完整说出这句确认回应。",
+        },
+        {
+          id: "action-3",
+          resourceId: "task",
+          name: "完成一次最小工作回应",
+          why: "从照读推进到自己的口头回应。",
+          steps: ["点击 Quick response task。", "读题 1 次。", "用 1 句英文回答。"],
+          duration: "3 分钟",
+          done: "你完成了 1 次自己的工作回应。",
+        },
+      ],
+      20: [
+        {
+          id: "action-1",
+          resourceId: "audio",
+          name: "听懂一段会议更新",
+          why: "先抓住时间变化、任务和责任人，避免只听到碎片词。",
+          steps: ["点击 Audio 资源。", "完整听 1 遍。", "第 2 遍只抓 `time / task / owner`。"],
+          duration: "6 分钟",
+          done: "你能说出这段更新的核心变化。",
+        },
+        {
+          id: "action-2",
+          resourceId: "sentence",
+          name: "跟说一句确认回应",
+          why: "把理解推进到一条能直接在 meeting 里说出口的回应。",
+          steps: ["点击 Key sentence。", "跟读 3 次。", "第 4 次不看文本说。"],
+          duration: "5 分钟",
+          done: "你能自然说出这句确认回应。",
+        },
+        {
+          id: "action-3",
+          resourceId: "task",
+          name: "完成一次最小工作回应",
+          why: "确认你不只是复述，而是能给出自己的下一步回应。",
+          steps: ["点击 Quick response task。", "读题 1 次。", "只用 1 句英文回应。"],
+          duration: "7 分钟",
+          done: "你已经完成 1 次自己的工作回应。",
+        },
+      ],
+      30: [
+        {
+          id: "action-1",
+          resourceId: "audio",
+          name: "听懂并复述会议更新",
+          why: "把会议信息听清，再收成 1 句英文复述。",
+          steps: ["点击 Audio 资源。", "完整听 2 遍。", "第 3 遍后用 1 句英文复述变化。"],
+          duration: "10 分钟",
+          done: "你能用 1 句英文复述更新重点。",
+        },
+        {
+          id: "action-2",
+          resourceId: "sentence",
+          name: "稳定说出确认回应",
+          why: "把今天最关键的一句回应说顺。",
+          steps: ["点击 Key sentence。", "跟读 4 次。", "最后 2 次不看文本说。"],
+          duration: "8 分钟",
+          done: "你能稳定说出这句会议回应。",
+        },
+        {
+          id: "action-3",
+          resourceId: "task",
+          name: "完成一次完整回应",
+          why: "从理解推进到你自己的简短工作表达。",
+          steps: ["点击 Quick response task。", "先回答 1 次。", "再重说 1 次让语气更自然。"],
+          duration: "12 分钟",
+          done: "你已经完成 1 次自己的会议回应，并能再说得更顺。",
+        },
+      ],
+    },
+    completion: {
+      keySentence: "Got it. I'll send the updated deck before noon.",
+      tomorrow: "明天继续职场线，但换成 `small talk` 或 `meeting clarification` 场景。",
+    },
   },
   data: {
     label: "Data English",
@@ -81,41 +325,146 @@ const plans = {
     mainSkill: "Speaking",
     supportSkill: "Pronunciation",
     supportChip: "发音辅助",
-    rationale:
-      "You already understand the data concepts, so today’s gain comes from saying them faster and following spoken explanations in real time.",
-    rationaleCn:
-      "数据概念你已经懂，今天把训练放在更快说出来和更稳地跟住实时说明上，而不是再做概念理解。",
+    sceneCn: "数据岗位：向同事说明一项关键指标变化",
+    sceneEn: "Explaining a key metric change to a colleague",
+    whyCn: "今天不做抽象数据英语，只练一个工作里真实会说的场景：解释一个指标变化和接下来怎么判断。",
     goal: {
-      10: "Recognize the key trend in one spoken data update.",
-      20: "Explain one chart insight aloud with less hesitation.",
-      30: "Track and respond to a short data discussion in clearer spoken English.",
+      10: "听懂并说出 1 个指标变化的核心意思。",
+      20: "听懂并说出 1 个指标变化的核心意思。",
+      30: "跟住一次数据更新，并完成 1 次自己的英文说明。",
     },
-    tasks: {
-      10: [
-        { title: "Listen for the key metric", detail: "Catch the one metric driving the spoken update.", duration: "4 min", check: "You can name the metric and trend." },
-        { title: "Say one insight line", detail: "Explain the trend in one short sentence.", duration: "3 min", check: "It is said once without reading." },
-        { title: "Pronunciation tune-up", detail: "Clean up one data term and one number pattern.", duration: "3 min", check: "Both sound more natural." },
-      ],
-      20: [
-        { title: "Shadow one data update", detail: "Repeat a spoken chart summary until pacing feels natural.", duration: "8 min", check: "One full run is smooth." },
-        { title: "Repeat and record insight lines", detail: "Use four chart or metric explanation lines.", duration: "6 min", check: "One take is clean enough to keep." },
-        { title: "Pronunciation repair", detail: "Fix stress in data vocabulary and number phrasing.", duration: "6 min", check: "Target terms feel less rigid." },
-      ],
-      30: [
-        { title: "Shadow two spoken data summaries", detail: "Practice one update and one recommendation segment.", duration: "10 min", check: "Both clips are repeatable." },
-        { title: "Record your own summary twice", detail: "Compare clarity, flow, and stress on numbers.", duration: "10 min", check: "The second version is tighter." },
-        { title: "Response drill", detail: "Give one recommendation and one risk note based on the data.", duration: "10 min", check: "Both points are spoken clearly." },
-      ],
+    doneMeans: {
+      10: "你能说出指标变化的意思，并给出 1 句英文解释。",
+      20: "你能说出指标变化的意思，并给出 1 句英文解释。",
+      30: "你能复述更新重点，并完成 1 次自己的英文说明。",
     },
     resources: [
-      { label: "Today’s listening clip", detail: "Short spoken dashboard update with one trend change." },
-      { label: "Today’s shadow lines", detail: "Six phrases for chart trends, drivers, and recommendations." },
-      { label: "Today’s output prompt", detail: "Answer: ‘What is the main takeaway from this week’s numbers?’" },
+      {
+        id: "audio",
+        type: "Audio",
+        content: "Weekly retention dropped by three percent after the pricing change, but trial sign-ups stayed flat.",
+        why: "先听懂这次数据更新的关键趋势和变化原因。",
+        cta: "开始听这段更新",
+        helper: "先完整听 1 遍，再听第 2 遍并抓 `metric / change / cause`。",
+        speechText: "Weekly retention dropped by three percent after the pricing change, but trial sign-ups stayed flat.",
+      },
+      {
+        id: "sentence",
+        type: "Key sentence",
+        content: "Weekly retention dropped after the pricing change.",
+        why: "这是今天最该说出口的一句核心解释。",
+        cta: "开始跟读这句话",
+        helper: "先跟读 3 次，第 4 次不看文本直接说。",
+        speechText: "Weekly retention dropped after the pricing change.",
+      },
+      {
+        id: "task",
+        type: "Quick response task",
+        content: "What is the main takeaway from this week's numbers?",
+        why: "把理解推进成一次最小工作说明。",
+        cta: "开始回答这个问题",
+        helper: "请直接用 1 句英文说出你的 takeaway。",
+        prompt: "Retention dropped after the pricing change, so we should check user feedback first.",
+      },
     ],
+    actions: {
+      10: [
+        {
+          id: "action-1",
+          resourceId: "audio",
+          name: "听懂一段数据更新",
+          why: "先抓住指标、变化和原因，不先堆术语。",
+          steps: ["点击 Audio 资源。", "完整听 1 遍。", "第 2 遍只抓 `metric / change / cause`。"],
+          duration: "4 分钟",
+          done: "你能说出哪项指标变了、怎么变的。",
+        },
+        {
+          id: "action-2",
+          resourceId: "sentence",
+          name: "跟说一句核心解释",
+          why: "把理解推进到一句能直接在工作里说的说明。",
+          steps: ["点击 Key sentence。", "跟读 2 次。", "最后 1 次不看文本说。"],
+          duration: "3 分钟",
+          done: "你能完整说出这句核心解释。",
+        },
+        {
+          id: "action-3",
+          resourceId: "task",
+          name: "完成一次最小说明",
+          why: "确认你能给出自己的英文 takeaway。",
+          steps: ["点击 Quick response task。", "读题 1 次。", "用 1 句英文回答。"],
+          duration: "3 分钟",
+          done: "你完成了 1 次自己的英文说明。",
+        },
+      ],
+      20: [
+        {
+          id: "action-1",
+          resourceId: "audio",
+          name: "听懂一段数据更新",
+          why: "先抓住指标变化和原因，避免听到词但说不出重点。",
+          steps: ["点击 Audio 资源。", "完整听 1 遍。", "第 2 遍只抓 `metric / change / cause`。"],
+          duration: "6 分钟",
+          done: "你能说出这段更新的核心变化。",
+        },
+        {
+          id: "action-2",
+          resourceId: "sentence",
+          name: "跟说一句核心解释",
+          why: "把理解推进到一句能直接在工作里说出来的解释。",
+          steps: ["点击 Key sentence。", "跟读 3 次。", "第 4 次不看文本说。"],
+          duration: "5 分钟",
+          done: "你能自然说出这句核心解释。",
+        },
+        {
+          id: "action-3",
+          resourceId: "task",
+          name: "完成一次最小工作说明",
+          why: "确认你已经能用自己的英文说出一个 takeaway。",
+          steps: ["点击 Quick response task。", "读题 1 次。", "只用 1 句英文回应。"],
+          duration: "7 分钟",
+          done: "你已经完成 1 次自己的英文说明。",
+        },
+      ],
+      30: [
+        {
+          id: "action-1",
+          resourceId: "audio",
+          name: "听懂并复述数据更新",
+          why: "把听到的趋势和原因收成 1 句清楚的英文复述。",
+          steps: ["点击 Audio 资源。", "完整听 2 遍。", "第 3 遍后用 1 句英文复述重点。"],
+          duration: "10 分钟",
+          done: "你能用 1 句英文复述这段数据更新。",
+        },
+        {
+          id: "action-2",
+          resourceId: "sentence",
+          name: "稳定说出核心解释",
+          why: "把今天最该说的一句解释说顺。",
+          steps: ["点击 Key sentence。", "跟读 4 次。", "最后 2 次不看文本说。"],
+          duration: "8 分钟",
+          done: "你能稳定说出这句核心解释。",
+        },
+        {
+          id: "action-3",
+          resourceId: "task",
+          name: "完成一次完整说明",
+          why: "从理解推进到你自己的工作表达。",
+          steps: ["点击 Quick response task。", "先回答 1 次。", "再重说 1 次让逻辑更顺。"],
+          duration: "12 分钟",
+          done: "你已经完成 1 次自己的英文说明，并能重说得更顺。",
+        },
+      ],
+    },
+    completion: {
+      keySentence: "Weekly retention dropped after the pricing change.",
+      tomorrow: "明天继续数据岗位线，但换成 `chart explanation` 或 `recommendation` 场景。",
+    },
   },
 };
 
 const state = readState();
+const runState = readRunState();
 
 function readState() {
   const params = new URLSearchParams(window.location.search);
@@ -130,17 +479,40 @@ function writeState() {
   window.localStorage.setItem("englishDailyPlan", JSON.stringify(state));
 }
 
+function runStateKey() {
+  return `englishTrainingRun:${state.context}:${state.duration}`;
+}
+
+function readRunState() {
+  const saved = JSON.parse(window.localStorage.getItem(runStateKey()) || "{}");
+  return {
+    activeActionId: saved.activeActionId || null,
+    activeResourceId: saved.activeResourceId || null,
+    completedActionIds: Array.isArray(saved.completedActionIds) ? saved.completedActionIds : [],
+  };
+}
+
+function writeRunState() {
+  window.localStorage.setItem(runStateKey(), JSON.stringify(runState));
+}
+
+function resetRunState() {
+  runState.activeActionId = null;
+  runState.activeResourceId = null;
+  runState.completedActionIds = [];
+  writeRunState();
+}
+
 function getPlan() {
   return plans[state.context] || plans.life;
 }
 
-function durationLabel(duration) {
-  return `${duration}${duration === 30 ? "+" : ""} 分钟可完成训练`;
+function durationMinutesLabel(duration) {
+  return `${duration}${duration === 30 ? "+" : ""} 分钟`;
 }
 
-function doneMeans(plan) {
-  const finalTask = plan.tasks[state.duration][2];
-  return `完成标准：${finalTask.check}`;
+function durationEntryLabel(duration) {
+  return `${duration}${duration === 30 ? "+" : ""} 分钟可完成训练`;
 }
 
 function buildHref(path) {
@@ -152,17 +524,36 @@ function buildHref(path) {
   return `${path}?${params.toString()}`;
 }
 
+function escapeHtml(value) {
+  return String(value)
+    .replaceAll("&", "&amp;")
+    .replaceAll("<", "&lt;")
+    .replaceAll(">", "&gt;")
+    .replaceAll('"', "&quot;")
+    .replaceAll("'", "&#39;");
+}
+
+function speakText(text) {
+  if (!("speechSynthesis" in window)) return;
+  window.speechSynthesis.cancel();
+  const utterance = new SpeechSynthesisUtterance(text);
+  utterance.lang = "en-AU";
+  utterance.rate = 0.92;
+  window.speechSynthesis.speak(utterance);
+}
+
 function renderEntryPage() {
   const plan = getPlan();
-  document.querySelector("#entry-time-bucket").textContent = durationLabel(state.duration);
+  document.querySelector("#entry-time-bucket").textContent = durationEntryLabel(state.duration);
   document.querySelector("#entry-goal").textContent = plan.goal[state.duration];
   document.querySelector("#entry-goal-strong").textContent = plan.goal[state.duration];
   document.querySelector("#entry-context").textContent = plan.shellLabel;
   document.querySelector("#entry-support-skill").textContent = plan.supportChip;
-  document.querySelector("#entry-rationale").textContent = plan.rationaleCn;
+  document.querySelector("#entry-rationale").textContent = plan.whyCn;
 
   const startLink = document.querySelector("#start-plan-link");
   startLink.href = buildHref("/training.html");
+  startLink.addEventListener("click", resetRunState);
 
   const contextSelect = document.querySelector("#qc-context");
   const durationSelect = document.querySelector("#qc-duration");
@@ -178,72 +569,175 @@ function renderEntryPage() {
     state.duration = Number(durationSelect.value);
     state.blocker = skillSelect.value;
     writeState();
+    resetRunState();
     window.location.href = buildHref("/training.html");
   });
 }
 
-function renderTaskItems(items, target) {
-  target.innerHTML = "";
-  items.forEach((item, index) => {
-    const li = document.createElement("li");
-    li.innerHTML = `
-      <div class="task-line">
+function actionCardHtml(action, index) {
+  const isActive = runState.activeActionId === action.id;
+  const isDone = runState.completedActionIds.includes(action.id);
+  return `
+    <li class="action-card${isActive ? " is-active" : ""}${isDone ? " is-done" : ""}" id="${action.id}">
+      <div class="action-card__head">
         <div>
-          <strong>${index + 1}. ${item.title}</strong>
-          <span>${item.detail}</span>
+          <p class="mini-label">Action ${index + 1}</p>
+          <strong>${escapeHtml(action.name)}</strong>
         </div>
-        <span class="task-duration">${item.duration}</span>
+        <span class="task-duration">${escapeHtml(action.duration)}</span>
       </div>
-      <div class="task-meta">
-        <span class="task-check">${item.check}</span>
+      <div class="action-card__body">
+        <div class="card-copy">
+          <span class="card-copy__label">为什么做</span>
+          <p>${escapeHtml(action.why)}</p>
+        </div>
+        <div class="card-copy">
+          <span class="card-copy__label">怎么做</span>
+          <ol class="step-list">
+            ${action.steps.map((step) => `<li>${escapeHtml(step)}</li>`).join("")}
+          </ol>
+        </div>
+        <div class="card-copy">
+          <span class="card-copy__label">完成算什么</span>
+          <p>${escapeHtml(action.done)}</p>
+        </div>
       </div>
-    `;
-    target.append(li);
-  });
+      <div class="card-actions">
+        <button class="secondary-action card-button" type="button" data-action-start="${action.id}" data-resource="${action.resourceId}">
+          开始这个动作
+        </button>
+        <button class="card-check${isDone ? " is-done" : ""}" type="button" data-action-complete="${action.id}">
+          ${isDone ? "已完成这一步" : "标记这一步完成"}
+        </button>
+      </div>
+    </li>
+  `;
 }
 
-function renderResources(items, target) {
-  target.innerHTML = "";
-  items.forEach((item, index) => {
-    const li = document.createElement("li");
-    li.innerHTML = `
-      <strong>${index + 1}. ${item.label}</strong>
-      <span>${item.detail}</span>
-    `;
-    target.append(li);
-  });
+function resourceCardHtml(resource, index) {
+  const isActive = runState.activeResourceId === resource.id;
+  return `
+    <li class="resource-card${isActive ? " is-active" : ""}" id="resource-${resource.id}">
+      <div class="resource-card__head">
+        <div>
+          <p class="mini-label">Resource ${index + 1}</p>
+          <strong>${escapeHtml(resource.type)}</strong>
+        </div>
+        <span class="resource-badge">${escapeHtml(resource.type.toLowerCase())}</span>
+      </div>
+      <div class="card-copy">
+        <span class="card-copy__label">资源内容</span>
+        <p class="resource-content">${escapeHtml(resource.content)}</p>
+      </div>
+      <div class="card-copy">
+        <span class="card-copy__label">为什么用它</span>
+        <p>${escapeHtml(resource.why)}</p>
+      </div>
+      <div class="card-copy card-copy--helper">
+        <span class="card-copy__label">开始后怎么做</span>
+        <p>${escapeHtml(resource.helper)}</p>
+      </div>
+      <button class="secondary-action card-button" type="button" data-resource-start="${resource.id}">
+        ${escapeHtml(resource.cta)}
+      </button>
+    </li>
+  `;
 }
 
 function renderTrainingPage() {
   const plan = getPlan();
-  document.querySelector("#training-header-goal").textContent = "今天的训练";
-  document.querySelector("#training-why").textContent = plan.rationaleCn;
+  const actions = plan.actions[state.duration];
+  const resources = plan.resources;
+  const allDone = actions.every((action) => runState.completedActionIds.includes(action.id));
+  const completeLink = document.querySelector("#complete-link");
+
+  document.querySelector("#training-header-goal").textContent = plan.sceneCn;
+  document.querySelector("#training-why").textContent = plan.whyCn;
+  document.querySelector("#training-goal").textContent = plan.goal[state.duration];
+  document.querySelector("#training-main-skill-pill").textContent = plan.mainSkill;
+  document.querySelector("#training-support-skill-pill").textContent = plan.supportSkill;
   document.querySelector("#training-main-skill").textContent = plan.mainSkill;
   document.querySelector("#training-support-skill").textContent = plan.supportSkill;
-  document.querySelector("#training-duration").textContent = `${state.duration}${state.duration === 30 ? "+" : ""} 分钟`;
-  document.querySelector("#training-goal").textContent = plan.goal[state.duration];
-  document.querySelector("#training-rationale").textContent = plan.rationaleCn;
-  document.querySelector("#training-done-means").textContent = doneMeans(plan);
-  renderTaskItems(plan.tasks[state.duration], document.querySelector("#training-task-list"));
-  renderResources(plan.resources, document.querySelector("#resource-list"));
+  document.querySelector("#training-duration").textContent = durationMinutesLabel(state.duration);
+  document.querySelector("#training-duration-brief").textContent = durationMinutesLabel(state.duration);
+  document.querySelector("#training-done-means").textContent = plan.doneMeans[state.duration];
+  document.querySelector("#training-scene").textContent = `${plan.sceneCn} · ${plan.sceneEn}`;
 
-  document.querySelector("#complete-link").href = buildHref("/completion.html");
+  document.querySelector("#training-task-list").innerHTML = actions.map(actionCardHtml).join("");
+  document.querySelector("#resource-list").innerHTML = resources.map(resourceCardHtml).join("");
+
+  document.querySelector("#training-finish-copy").textContent =
+    allDone
+      ? "上面 3 个动作已经做完。现在直接结束今天这一轮。"
+      : "做完上面 3 个动作后，今天这轮就可以结束。";
+
+  completeLink.href = buildHref("/completion.html");
+  completeLink.classList.toggle("is-disabled", !allDone);
+  completeLink.setAttribute("aria-disabled", String(!allDone));
+  completeLink.textContent = allDone ? "结束今天这轮训练" : `先完成 3 个动作（已完成 ${runState.completedActionIds.length}/3）`;
+
+  completeLink.onclick = (event) => {
+    if (!allDone) {
+      event.preventDefault();
+      document.querySelector("#training-finish-copy").scrollIntoView({ behavior: "smooth", block: "center" });
+      return;
+    }
+    writeState();
+  };
+
+  document.querySelectorAll("[data-action-start]").forEach((button) => {
+    button.addEventListener("click", () => {
+      const actionId = button.dataset.actionStart;
+      const resourceId = button.dataset.resource;
+      runState.activeActionId = actionId;
+      runState.activeResourceId = resourceId;
+      writeRunState();
+      renderTrainingPage();
+      document.querySelector(`#resource-${resourceId}`)?.scrollIntoView({ behavior: "smooth", block: "start" });
+    });
+  });
+
+  document.querySelectorAll("[data-action-complete]").forEach((button) => {
+    button.addEventListener("click", () => {
+      const actionId = button.dataset.actionComplete;
+      if (runState.completedActionIds.includes(actionId)) {
+        runState.completedActionIds = runState.completedActionIds.filter((id) => id !== actionId);
+      } else {
+        runState.completedActionIds = [...runState.completedActionIds, actionId];
+      }
+      writeRunState();
+      renderTrainingPage();
+    });
+  });
+
+  document.querySelectorAll("[data-resource-start]").forEach((button) => {
+    button.addEventListener("click", () => {
+      const resourceId = button.dataset.resourceStart;
+      const resource = resources.find((item) => item.id === resourceId);
+      runState.activeResourceId = resourceId;
+      if (!runState.activeActionId) {
+        runState.activeActionId = actions.find((action) => action.resourceId === resourceId)?.id || null;
+      }
+      writeRunState();
+      renderTrainingPage();
+      if (resource?.speechText) speakText(resource.speechText);
+      if (resource?.prompt) {
+        document.querySelector(`#resource-${resourceId}`)?.scrollIntoView({ behavior: "smooth", block: "center" });
+      }
+    });
+  });
 }
 
 function renderCompletionPage() {
   const plan = getPlan();
-  const nextBucket = state.duration === 10 ? "20 分钟训练" : state.duration === 20 ? "继续 20 分钟训练" : "回到 20 分钟训练";
-  document.querySelector("#completion-trained").textContent = `${plan.mainSkill} with ${plan.supportSkill.toLowerCase()} support`;
-  document.querySelector("#completion-goal").textContent = plan.goal[state.duration];
-  document.querySelector("#completion-next-time").textContent = nextBucket;
-  document.querySelector("#completion-reflection").textContent =
-    state.duration === 10
-      ? "如果今天偏短，明天可以上调到 20 分钟；如果刚刚好，就继续保持同样的节奏。"
-      : state.duration === 20
-        ? "除非明天时间更紧，不然继续同样的时间桶。目标不是做更多，而是继续稳定完成。"
-        : "如果明天想更容易完成一次，就回到 20 分钟时间桶。";
-  document.querySelector("#completion-streak").textContent =
-    "这一轮已完成。连续天数、日历和徽章都放在次级层，明天继续出现才是主线。";
+  const actions = plan.actions[state.duration];
+  document.querySelector("#completion-scene").textContent = `${plan.sceneCn} · ${plan.sceneEn}`;
+  document.querySelector("#completion-key-line").textContent = plan.completion.keySentence;
+  document.querySelector("#completion-next-time").textContent = durationEntryLabel(state.duration === 10 ? 20 : state.duration);
+  document.querySelector("#completion-reflection").textContent = plan.completion.tomorrow;
+  document.querySelector("#completion-steps").innerHTML = actions
+    .map((action) => `<li>${escapeHtml(action.name)}</li>`)
+    .join("");
 }
 
 function init() {
