@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>历史回顾 | Northstar 英语学习平台</title>
+    <link rel="stylesheet" href="/styles.css">
+  </head>
+  <body data-page="review">
+    <div class="app-shell">
+      <header class="platform-topbar">
+        <div>
+          <p class="eyebrow">历史回顾</p>
+          <h1>看清你已经走到哪里，而不是只看今天。</h1>
+          <p class="intro">历史回顾只回答三件事：你完成了哪些天、当前卡在哪个阶段、下一步该继续什么。</p>
+        </div>
+        <nav class="primary-nav" aria-label="一级导航">
+          <a class="primary-nav__link" href="/plan.html">计划</a>
+          <a class="primary-nav__link" href="/courses.html">课程</a>
+          <a class="primary-nav__link" href="/training.html">今日学习</a>
+          <a class="primary-nav__link is-active" href="/review.html">回顾</a>
+        </nav>
+      </header>
+
+      <main class="workspace workspace--platform">
+        <section class="platform-grid">
+          <section class="panel panel--hero">
+            <div class="panel__stack">
+              <p class="eyebrow">阶段回顾</p>
+              <h2 id="review-stage-title">你已经走到“生活高频事务应对”的后半段。</h2>
+              <p class="support-copy" id="review-stage-copy">目前先稳住租房、预约、现场沟通，再切到工作场景。</p>
+            </div>
+            <div class="progress-card">
+              <span>累计进度</span>
+              <strong id="review-progress-text">18 / 60 天</strong>
+              <div class="progress-bar"><span id="review-progress-bar"></span></div>
+            </div>
+          </section>
+
+          <section class="panel">
+            <div class="section-heading">
+              <div>
+                <p class="eyebrow">最近完成</p>
+                <h2>最近几天你学了什么</h2>
+              </div>
+            </div>
+            <ol class="history-list" id="review-history"></ol>
+          </section>
+        </section>
+      </main>
+    </div>
+
+    <script src="/app.js"></script>
+  </body>
+</html>

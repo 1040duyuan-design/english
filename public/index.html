@@ -3,97 +3,134 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Northstar 英语训练台</title>
+    <title>目标设定 | Northstar 英语学习平台</title>
     <link rel="stylesheet" href="/styles.css">
   </head>
-  <body data-page="entry">
+  <body data-page="goal">
     <div class="app-shell">
-      <header class="topbar topbar--compact">
+      <header class="platform-topbar">
         <div>
-          <p class="eyebrow">成人英语每日训练驾驶舱</p>
-          <h1>每天只做一轮，小步完成就够了。</h1>
+          <p class="eyebrow">Northstar English Platform</p>
+          <h1>先定目标，再生成你的英语学习计划。</h1>
           <p class="intro">
-            每天打开一次，先认出今天该练什么，再完成一轮可结束的训练，稳步服务你去澳大利亚独立生活和工作的目标。
+            这不是每天盲练的入口，而是一套围绕你去澳大利亚独立生活和工作的目标，自动安排周期、阶段、今日学习与进度推进的学习平台。
           </p>
         </div>
-        <div class="topbar__meta">
-          <div class="meta-pill">
-            <span class="meta-pill__label">总目标</span>
-            <strong>去澳大利亚独立生活与工作</strong>
-          </div>
-          <div class="meta-pill">
-            <span class="meta-pill__label">今日时间桶</span>
-            <strong id="entry-time-bucket">20 分钟可完成训练</strong>
-          </div>
-        </div>
+        <nav class="primary-nav" aria-label="一级导航">
+          <a class="primary-nav__link is-active" href="/">计划</a>
+          <a class="primary-nav__link" href="/courses.html">课程</a>
+          <a class="primary-nav__link" href="/training.html">今日学习</a>
+          <a class="primary-nav__link" href="/review.html">回顾</a>
+        </nav>
       </header>
 
-      <main class="workspace workspace--single">
-        <section class="panel panel--focus" aria-labelledby="entry-title">
+      <main class="workspace workspace--platform">
+        <section class="panel panel--hero" aria-labelledby="goal-form-title">
           <div class="panel__stack">
-            <p class="eyebrow">今日入口</p>
-            <h2 id="entry-title">今天先从这里开始。</h2>
-            <p class="hero-copy" id="entry-goal">
-              Catch key meaning before translating in your head.
+            <p class="eyebrow">目标设定</p>
+            <h2 id="goal-form-title">先说清你要达成什么，再开始学习。</h2>
+            <p class="support-copy">
+              系统会根据你的目标时间、当前水平和每日投入时间，先生成一条完整学习路径，再安排今天该学什么。
             </p>
-            <div class="hero-badges">
-              <span class="badge badge--soft" id="entry-context">Life English</span>
-              <span class="badge badge--dark" id="entry-support-skill">Pronunciation support</span>
-            </div>
           </div>
 
-          <div class="entry-card">
-            <p class="mini-label">今日目标</p>
-            <strong id="entry-goal-strong">Catch key meaning before translating in your head.</strong>
-            <p class="support-copy" id="entry-rationale">
-              今天先收一个最值得练的短板，不把首页变成多入口选择题。
-            </p>
-            <a class="primary-action primary-action--wide" id="start-plan-link" href="/training.html">开始今天训练</a>
-            <p class="support-copy support-copy--tight">
-              这是唯一主动作。先开始，再完成这一轮，其他都放后面。
-            </p>
-          </div>
+          <form class="goal-form" id="goal-form">
+            <label class="field field--wide">
+              <span class="field__label">我的目标是什么</span>
+              <textarea id="goal-target" rows="3">去澳大利亚后，能独立租房、打电话预约、在工作里和同事顺畅沟通。</textarea>
+            </label>
+
+            <div class="form-grid">
+              <label class="field">
+                <span class="field__label">目标时间</span>
+                <select id="goal-timeframe">
+                  <option value="30">30 天</option>
+                  <option value="60" selected>60 天</option>
+                  <option value="90">90 天</option>
+                </select>
+              </label>
+
+              <label class="field">
+                <span class="field__label">当前水平</span>
+                <select id="goal-level">
+                  <option value="foundation">能读写，但听说弱</option>
+                  <option value="practical" selected>基础沟通可以，但真实场景卡住</option>
+                  <option value="work">生活基础还行，但工作沟通不顺</option>
+                </select>
+              </label>
+
+              <label class="field">
+                <span class="field__label">每天可投入时间</span>
+                <select id="goal-daily-minutes">
+                  <option value="10">10 分钟</option>
+                  <option value="20" selected>20 分钟</option>
+                  <option value="30">30 分钟以上</option>
+                </select>
+              </label>
+
+              <label class="field">
+                <span class="field__label">学习重心</span>
+                <select id="goal-focus">
+                  <option value="life" selected>偏生活英语</option>
+                  <option value="work">偏工作英语</option>
+                  <option value="mixed">两者都要</option>
+                </select>
+              </label>
+            </div>
+
+            <div class="form-grid form-grid--two">
+              <label class="field">
+                <span class="field__label">当前最大短板</span>
+                <select id="goal-gap">
+                  <option value="listening" selected>听力速度</option>
+                  <option value="speaking">口语输出</option>
+                  <option value="pronunciation">发音</option>
+                  <option value="work-context">工作场景表达</option>
+                </select>
+              </label>
+
+              <label class="field">
+                <span class="field__label">最想先解决的真实场景</span>
+                <select id="goal-scene">
+                  <option value="rental" selected>租房 / 看房 / 打电话</option>
+                  <option value="clinic">医院 / 前台 / 预约问诊</option>
+                  <option value="meeting">meeting / colleague communication</option>
+                  <option value="data">数据岗位工作英语</option>
+                </select>
+              </label>
+            </div>
+
+            <button class="primary-action primary-action--wide" type="submit">生成我的学习计划</button>
+          </form>
         </section>
 
-        <section class="panel panel--subdued" aria-labelledby="quick-check-title">
-          <div class="panel__stack">
-            <p class="eyebrow">快速重建</p>
-            <h2 id="quick-check-title">只有今天状态变了，才用这里。</h2>
-            <p class="support-copy">
-              当你的精力、场景或时间和默认计划不一样时，再快速重建今天的训练优先级。
-            </p>
-          </div>
+        <section class="platform-grid">
+          <section class="panel panel--subtle">
+            <div class="panel__stack">
+              <p class="eyebrow">计划生成后你会看到什么</p>
+              <h2>不是内容堆叠，而是一条清楚学习路径。</h2>
+            </div>
+            <ul class="bullet-list">
+              <li>总共学多少天</li>
+              <li>当前在哪个阶段</li>
+              <li>今天学多久、学什么</li>
+              <li>课程中心里先学哪组内容</li>
+              <li>完成后整体进度更新到哪里</li>
+            </ul>
+          </section>
 
-          <div class="quick-check-grid">
-            <label class="field">
-              <span class="field__label">今天最卡的是哪一项？</span>
-              <select id="qc-skill">
-                <option value="listening">Listening 听力速度</option>
-                <option value="speaking">Speaking 口语输出</option>
-                <option value="pronunciation">Pronunciation 发音</option>
-              </select>
-            </label>
-
-            <label class="field">
-              <span class="field__label">今天主要服务什么场景？</span>
-              <select id="qc-context">
-                <option value="life">生活英语</option>
-                <option value="business">商务英语</option>
-                <option value="data">数据岗位英语</option>
-              </select>
-            </label>
-
-            <label class="field">
-              <span class="field__label">今天有多少时间？</span>
-              <select id="qc-duration">
-                <option value="10">10 分钟</option>
-                <option value="20" selected>20 分钟</option>
-                <option value="30">30 分钟以上</option>
-              </select>
-            </label>
-          </div>
-
-          <button class="secondary-action secondary-action--wide" id="quick-check-button" type="button">快速重建今天计划</button>
+          <section class="panel panel--subtle">
+            <div class="panel__stack">
+              <p class="eyebrow">最小平台边界</p>
+              <h2>这轮先验证平台骨架，不先长成后台。</h2>
+            </div>
+            <ul class="bullet-list">
+              <li>计划页负责目标、周期、阶段、今天入口</li>
+              <li>课程页负责按阶段组织学习内容</li>
+              <li>今日学习页负责当天执行</li>
+              <li>回顾页负责历史与进度回看</li>
+            </ul>
+          </section>
         </section>
       </main>
     </div>

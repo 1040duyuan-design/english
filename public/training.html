@@ -3,93 +3,87 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>今天的训练 | Northstar 英语训练台</title>
+    <title>今日学习 | Northstar 英语学习平台</title>
     <link rel="stylesheet" href="/styles.css">
   </head>
-  <body data-page="training">
+  <body data-page="today">
     <div class="app-shell">
-      <header class="topbar topbar--compact">
+      <header class="platform-topbar">
         <div>
-          <p class="eyebrow">今日训练</p>
-          <h1 id="training-header-goal">今天这轮训练</h1>
-          <p class="intro" id="training-why">
-            今天只做一轮，不扩散，不切换，先把这一轮训练做完。
+          <p class="eyebrow">今日学习</p>
+          <h1 id="today-title">今天只完成这一轮学习。</h1>
+          <p class="intro" id="today-intro">
+            今天学完这组内容，你的计划会往前推进 1 天。
           </p>
         </div>
-        <div class="topbar__meta">
-          <div class="meta-pill">
-            <span class="meta-pill__label">主技能</span>
-            <strong id="training-main-skill-pill">Listening</strong>
-          </div>
-          <div class="meta-pill">
-            <span class="meta-pill__label">辅助技能</span>
-            <strong id="training-support-skill-pill">Pronunciation</strong>
-          </div>
-        </div>
+        <nav class="primary-nav" aria-label="一级导航">
+          <a class="primary-nav__link" href="/plan.html">计划</a>
+          <a class="primary-nav__link" href="/courses.html">课程</a>
+          <a class="primary-nav__link is-active" href="/training.html">今日学习</a>
+          <a class="primary-nav__link" href="/review.html">回顾</a>
+        </nav>
       </header>
 
-      <main class="workspace workspace--training">
-        <section class="panel panel--focus" aria-labelledby="training-sheet-title">
-          <div class="section-head">
+      <main class="workspace workspace--platform">
+        <section class="panel panel--hero">
+          <div class="hero-grid">
+            <div class="panel__stack">
+              <p class="eyebrow">今天的学习单</p>
+              <h2 id="today-goal">今天先把租房电话预约场景走通。</h2>
+              <p class="support-copy" id="today-scene">场景：澳洲租房，看房预约电话</p>
+            </div>
+            <div class="stat-grid">
+              <div class="stat-card">
+                <span>今日时长</span>
+                <strong id="today-duration">20 分钟</strong>
+              </div>
+              <div class="stat-card">
+                <span>主技能</span>
+                <strong id="today-main-skill">Listening</strong>
+              </div>
+              <div class="stat-card">
+                <span>辅助技能</span>
+                <strong id="today-support-skill">Speaking</strong>
+              </div>
+              <div class="stat-card">
+                <span>完成标准</span>
+                <strong id="today-done-means">完成 3 个动作，并说出 1 句关键请求。</strong>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="platform-grid platform-grid--today">
+          <section class="panel">
+            <div class="section-heading">
+              <div>
+                <p class="eyebrow">今日学习内容</p>
+                <h2>今天学什么</h2>
+              </div>
+            </div>
+            <ol class="card-list" id="today-actions"></ol>
+          </section>
+
+          <section class="panel">
+            <div class="section-heading">
+              <div>
+                <p class="eyebrow">今日资源</p>
+                <h2>今天直接用这些资源开始</h2>
+              </div>
+            </div>
+            <ol class="card-list" id="today-resources"></ol>
+          </section>
+        </section>
+
+        <section class="panel panel--subtle">
+          <div class="section-heading">
             <div>
-              <p class="eyebrow">训练单</p>
-              <h2 id="training-sheet-title">今天这一轮，做完就可以结束。</h2>
-              <p class="support-copy" id="training-scene">澳洲真实场景会显示在这里。</p>
-            </div>
-            <span class="time-chip" id="training-duration">20 分钟</span>
-          </div>
-
-          <div class="training-start" id="training-start-zone">
-            <div class="start-copy">
-              <p class="mini-label">先开始第一步</p>
-              <strong id="start-now-title">先听懂这段看房电话。</strong>
-              <p class="support-copy" id="start-now-copy">先点第一步，不需要先把整页看完。</p>
-            </div>
-            <button class="primary-action start-now-button" type="button" id="start-action-one">开始第 1 步</button>
-          </div>
-
-          <div class="training-columns">
-            <section class="feature-block">
-              <p class="mini-label">今日 3 个动作</p>
-              <ol class="task-sheet" id="training-task-list"></ol>
-            </section>
-
-            <section class="feature-block">
-              <p class="mini-label">今日 3 个资源</p>
-              <ol class="resource-list" id="resource-list"></ol>
-            </section>
-          </div>
-
-          <div class="training-brief training-brief--compact">
-            <div class="brief-card brief-card--signal">
-              <p class="summary-card__label">Today’s goal</p>
-              <strong id="training-goal">Catch key meaning before translating in your head.</strong>
-            </div>
-            <div class="brief-card">
-              <p class="summary-card__label">Main skill</p>
-              <strong id="training-main-skill">Listening</strong>
-            </div>
-            <div class="brief-card">
-              <p class="summary-card__label">Support skill</p>
-              <strong id="training-support-skill">Pronunciation</strong>
-            </div>
-            <div class="brief-card">
-              <p class="summary-card__label">Duration</p>
-              <strong id="training-duration-brief">20 分钟</strong>
-            </div>
-            <div class="brief-card">
-              <p class="summary-card__label">Done means</p>
-              <strong id="training-done-means">完成后你能说出今天这轮做成了什么。</strong>
+              <p class="eyebrow">完成区</p>
+              <h2>完成今天学习后，就更新到下一天。</h2>
+              <p class="support-copy">先做完今天这 3 个动作，再结束今天，不需要额外跳去别的地方找说明。</p>
             </div>
           </div>
-
-          <div class="feature-block feature-block--signal completion-cta">
-            <p class="mini-label">完成区</p>
-            <p class="support-copy" id="training-finish-copy">
-              做完上面 3 个动作后，今天这轮就可以结束。
-            </p>
-            <a class="primary-action primary-action--wide" id="complete-link" href="/completion.html">完成今天训练</a>
-          </div>
+          <a class="primary-action primary-action--wide" href="/completion.html">完成今天学习</a>
         </section>
       </main>
     </div>
