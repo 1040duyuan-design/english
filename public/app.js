@@ -229,28 +229,21 @@ function renderPlanPage() {
   const el = (selector) => document.querySelector(selector);
   if (!el("#plan-title")) return;
 
-  el("#plan-title").textContent = "这是你的英语学习计划。";
+  el("#plan-title").textContent = "先看清你现在在哪，再开始今天学习。";
   el("#plan-goal").textContent = plan.goalState.target;
   el("#plan-cycle").textContent = `总周期：${plan.goalState.timeframe} 天 | 当前水平：${levelLabels[plan.goalState.level]} | 每天投入：${plan.todayDuration}`;
   el("#plan-progress-text").textContent = `Day ${plan.currentDay} / ${plan.goalState.timeframe}`;
   el("#plan-progress-bar").style.width = `${Math.max(plan.progressRatio * 100, 6)}%`;
-  el("#plan-phase-copy").textContent = `当前阶段重点：${plan.phase.title}`;
+  el("#plan-phase-title").textContent = `现在先练 ${plan.phase.title.replace(/^阶段 \d+：/, "")}。`;
+  el("#plan-phase-days").textContent = plan.phase.days;
+  el("#plan-phase-name").textContent = plan.phase.title;
+  el("#plan-phase-summary").textContent = plan.phase.summary;
+  el("#plan-phase-reason").textContent = `先把 ${plan.scene.title} 这一类高频场景收稳，后面才更容易推进到更复杂的生活和工作沟通。`;
   el("#plan-today-label").textContent = `今天学 ${plan.todayDuration}`;
   el("#plan-today-scene").textContent = plan.scene.title;
-  el("#plan-today-summary").textContent = `${plan.todayFocus} | 完成标准：${plan.doneMeans}`;
-
-  const phases = el("#plan-phases");
-  phases.innerHTML = "";
-  planBlueprint.phases.forEach((phase, index) => {
-    const card = document.createElement("article");
-    card.className = `phase-card${index === planBlueprint.phases.indexOf(plan.phase) ? " is-current" : ""}`;
-    card.innerHTML = `
-      <p class="mini-label">${phase.days}</p>
-      <strong>${phase.title}</strong>
-      <p>${phase.summary}</p>
-    `;
-    phases.appendChild(card);
-  });
+  el("#plan-today-skill").textContent = `主技能：${plan.goalState.gap === "listening" ? "Listening" : "Speaking"}`;
+  el("#plan-today-time").textContent = `时长：${plan.todayDuration}`;
+  el("#plan-today-done").textContent = `完成标准：${plan.doneMeans}`;
 }
 
 function renderTodayPage() {
