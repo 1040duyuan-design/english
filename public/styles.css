@@ -624,11 +624,13 @@ select {
 }
 
 @media (max-width: 720px) {
-  .app-shell { padding: 18px 14px 36px; }
+  .app-shell { padding: 12px 12px 28px; }
   .topbar,
-  .panel { padding: 16px; }
+  .panel { padding: 12px; }
+  .topbar { gap: 12px; }
   .topbar__meta { grid-template-columns: 1fr; }
-  .topbar--compact h1 { font-size: 2.35rem; }
+  .topbar--compact h1 { font-size: 1.95rem; }
+  .topbar--compact .intro { display: none; }
   .section-head,
   .task-line,
   .action-card__head,
@@ -641,11 +643,29 @@ select {
   .topbar__meta {
     display: none;
   }
+  .section-head { gap: 10px; }
+  .section-head h2 {
+    margin-top: 4px;
+    font-size: 1.45rem;
+  }
+  #training-scene {
+    display: none;
+  }
+  .training-start {
+    gap: 10px;
+    padding: 14px;
+  }
+  .training-start strong {
+    font-size: 1.05rem;
+  }
+  .time-chip {
+    min-height: 30px;
+  }
   .training-brief {
     grid-template-columns: 1fr;
   }
   .training-brief .brief-card {
-    padding: 10px 12px;
+    padding: 8px 10px;
   }
   .start-now-button {
     width: 100%;
