@@ -577,11 +577,12 @@ function renderEntryPage() {
 function actionCardHtml(action, index) {
   const isActive = runState.activeActionId === action.id;
   const isDone = runState.completedActionIds.includes(action.id);
+  const isFirst = index === 0;
   return `
-    <li class="action-card${isActive ? " is-active" : ""}${isDone ? " is-done" : ""}" id="${action.id}">
+    <li class="action-card${isFirst ? " action-card--first" : ""}${isActive ? " is-active" : ""}${isDone ? " is-done" : ""}" id="${action.id}">
       <div class="action-card__head">
         <div>
-          <p class="mini-label">Action ${index + 1}</p>
+          <p class="mini-label">${isFirst ? "Action 1 · 先开始这里" : `Action ${index + 1}`}</p>
           <strong>${escapeHtml(action.name)}</strong>
         </div>
         <span class="task-duration">${escapeHtml(action.duration)}</span>
@@ -604,7 +605,7 @@ function actionCardHtml(action, index) {
       </div>
       <div class="card-actions">
         <button class="secondary-action card-button" type="button" data-action-start="${action.id}" data-resource="${action.resourceId}">
-          开始这个动作
+          ${isFirst ? "先开始第 1 步" : "开始这个动作"}
         </button>
         <button class="card-check${isDone ? " is-done" : ""}" type="button" data-action-complete="${action.id}">
           ${isDone ? "已完成这一步" : "标记这一步完成"}
@@ -662,6 +663,8 @@ function renderTrainingPage() {
   document.querySelector("#training-duration-brief").textContent = durationMinutesLabel(state.duration);
   document.querySelector("#training-done-means").textContent = plan.doneMeans[state.duration];
   document.querySelector("#training-scene").textContent = `${plan.sceneCn} · ${plan.sceneEn}`;
+  document.querySelector("#start-now-title").textContent = actions[0].name;
+  document.querySelector("#start-now-copy").textContent = `${actions[0].why} 先点这里，再往下做这一轮。`;
 
   document.querySelector("#training-task-list").innerHTML = actions.map(actionCardHtml).join("");
   document.querySelector("#resource-list").innerHTML = resources.map(resourceCardHtml).join("");
@@ -696,6 +699,14 @@ function renderTrainingPage() {
       document.querySelector(`#resource-${resourceId}`)?.scrollIntoView({ behavior: "smooth", block: "start" });
     });
   });
+
+  document.querySelector("#start-action-one").onclick = () => {
+    runState.activeActionId = actions[0].id;
+    runState.activeResourceId = actions[0].resourceId;
+    writeRunState();
+    renderTrainingPage();
+    document.querySelector(`#${actions[0].id}`)?.scrollIntoView({ behavior: "smooth", block: "start" });
+  };
 
   document.querySelectorAll("[data-action-complete]").forEach((button) => {
     button.addEventListener("click", () => {

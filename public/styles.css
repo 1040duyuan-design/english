@@ -188,6 +188,45 @@ select {
   gap: 16px;
 }
 
+.training-start {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 18px 20px;
+  border-radius: var(--radius-lg);
+  border: 1px solid rgba(36, 54, 77, 0.12);
+  background: linear-gradient(145deg, #24364d 0%, #1d2c40 100%);
+  color: #f7fafc;
+}
+
+.training-start .mini-label,
+.training-start .support-copy {
+  color: rgba(247, 250, 252, 0.78);
+}
+
+.training-start strong {
+  display: block;
+  margin-top: 6px;
+  font-size: 1.25rem;
+  line-height: 1.3;
+}
+
+.start-copy {
+  display: grid;
+  gap: 6px;
+}
+
+.start-copy .support-copy {
+  margin: 0;
+}
+
+.start-now-button {
+  min-width: 180px;
+  background: #f6f8fb;
+  color: var(--accent);
+}
+
 .entry-card {
   padding: 22px;
   border-radius: var(--radius-lg);
@@ -282,15 +321,16 @@ select {
 
 .brief-card {
   border-radius: var(--radius-lg);
-  padding: 16px 18px;
+  padding: 12px 14px;
   border: 1px solid var(--line);
   background: rgba(255, 255, 255, 0.78);
 }
 
 .brief-card strong {
   display: block;
-  margin-top: 8px;
-  line-height: 1.45;
+  margin-top: 6px;
+  line-height: 1.35;
+  font-size: 0.98rem;
 }
 
 .brief-card--signal {
@@ -312,6 +352,10 @@ select {
 
 .feature-block--quiet {
   background: linear-gradient(180deg, rgba(239, 243, 246, 0.92), rgba(248, 246, 241, 0.86));
+}
+
+.training-brief--compact {
+  gap: 10px;
 }
 
 .task-sheet,
@@ -339,6 +383,11 @@ select {
 .action-card,
 .resource-card {
   position: relative;
+}
+
+.action-card--first {
+  border-color: rgba(36, 54, 77, 0.2);
+  box-shadow: inset 0 0 0 1px rgba(36, 54, 77, 0.08);
 }
 
 .action-card.is-active,
@@ -584,8 +633,21 @@ select {
   .task-line,
   .action-card__head,
   .resource-card__head,
-  .card-actions { flex-direction: column; align-items: flex-start; }
+  .card-actions,
+  .training-start { flex-direction: column; align-items: flex-start; }
   .panel__stack h2,
   .panel__stack h1 { font-size: 2.2rem; }
   .entry-card { padding: 18px; }
+  .topbar__meta {
+    display: none;
+  }
+  .training-brief {
+    grid-template-columns: 1fr;
+  }
+  .training-brief .brief-card {
+    padding: 10px 12px;
+  }
+  .start-now-button {
+    width: 100%;
+  }
 }
