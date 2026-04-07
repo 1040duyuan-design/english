@@ -107,6 +107,10 @@ function writeGoalState(goalState) {
   window.localStorage.setItem("englishPlatformGoal", JSON.stringify(goalState));
 }
 
+function hasGeneratedPlan() {
+  return window.localStorage.getItem("englishPlatformGenerated") === "true";
+}
+
 function getPlanState() {
   const goalState = readGoalState();
   const scene = sceneMap[goalState.scene] || sceneMap.rental;
@@ -192,6 +196,17 @@ function renderGoalPage() {
   document.querySelector("#goal-gap").value = goalState.gap;
   document.querySelector("#goal-scene").value = goalState.scene;
 
+  if (!hasGeneratedPlan()) {
+    document.querySelectorAll("[data-locked-nav]").forEach((link) => {
+      link.classList.add("is-locked");
+      link.setAttribute("aria-disabled", "true");
+      link.setAttribute("tabindex", "-1");
+      link.addEventListener("click", (event) => {
+        event.preventDefault();
+      });
+    });
+  }
+
   form.addEventListener("submit", (event) => {
     event.preventDefault();
     const nextState = {
@@ -204,6 +219,7 @@ function renderGoalPage() {
       scene: document.querySelector("#goal-scene").value,
     };
     writeGoalState(nextState);
+    window.localStorage.setItem("englishPlatformGenerated", "true");
     window.location.href = "/plan.html";
   });
 }

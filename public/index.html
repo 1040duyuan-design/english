@@ -13,14 +13,14 @@
           <p class="eyebrow">Northstar English Platform</p>
           <h1>先定目标，再生成你的英语学习计划。</h1>
           <p class="intro">
-            这不是每天盲练的入口，而是一套围绕你去澳大利亚独立生活和工作的目标，自动安排周期、阶段、今日学习与进度推进的学习平台。
+            先填下面几项，再生成你的学习计划。计划生成前，不需要先去看课程、今日学习或回顾。
           </p>
         </div>
-        <nav class="primary-nav" aria-label="一级导航">
+        <nav class="primary-nav primary-nav--goal" aria-label="一级导航">
           <a class="primary-nav__link is-active" href="/">计划</a>
-          <a class="primary-nav__link" href="/courses.html">课程</a>
-          <a class="primary-nav__link" href="/training.html">今日学习</a>
-          <a class="primary-nav__link" href="/review.html">回顾</a>
+          <a class="primary-nav__link" data-locked-nav href="/courses.html">课程</a>
+          <a class="primary-nav__link" data-locked-nav href="/training.html">今日学习</a>
+          <a class="primary-nav__link" data-locked-nav href="/review.html">回顾</a>
         </nav>
       </header>
 
@@ -35,6 +35,13 @@
           </div>
 
           <form class="goal-form" id="goal-form">
+            <div class="goal-cta">
+              <p class="mini-label">先做这一步</p>
+              <strong>先生成你的学习计划，再进入课程和今天学习。</strong>
+              <button class="primary-action primary-action--wide" type="submit">生成我的学习计划</button>
+              <p class="support-copy support-copy--tight">当前唯一主动作。先生成计划，再往下走。</p>
+            </div>
+
             <label class="field field--wide">
               <span class="field__label">我的目标是什么</span>
               <textarea id="goal-target" rows="3">去澳大利亚后，能独立租房、打电话预约、在工作里和同事顺畅沟通。</textarea>
@@ -100,7 +107,6 @@
               </label>
             </div>
 
-            <button class="primary-action primary-action--wide" type="submit">生成我的学习计划</button>
           </form>
         </section>
 

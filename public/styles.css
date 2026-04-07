@@ -94,8 +94,8 @@ textarea {
 }
 
 .intro {
-  max-width: 62ch;
-  margin: 16px 0 0;
+  max-width: 50ch;
+  margin: 10px 0 0;
 }
 
 .primary-nav {
@@ -103,6 +103,10 @@ textarea {
   gap: 10px;
   align-items: flex-start;
   flex-wrap: wrap;
+}
+
+.primary-nav--goal {
+  justify-content: flex-end;
 }
 
 .primary-nav__link {
@@ -121,6 +125,12 @@ textarea {
   border-color: transparent;
   color: #f6f8fb;
   background: linear-gradient(145deg, #24364d 0%, #1d2c40 100%);
+}
+
+.primary-nav__link.is-locked {
+  opacity: 0.38;
+  pointer-events: none;
+  background: rgba(255, 255, 255, 0.5);
 }
 
 .workspace {
@@ -176,6 +186,26 @@ textarea {
 .field {
   display: grid;
   gap: 10px;
+}
+
+.goal-cta {
+  display: grid;
+  gap: 8px;
+  padding: 16px 18px;
+  border-radius: var(--radius-lg);
+  border: 1px solid rgba(36, 54, 77, 0.12);
+  background: linear-gradient(145deg, #24364d 0%, #1d2c40 100%);
+  color: #f7fafc;
+}
+
+.goal-cta strong {
+  font-size: 1.18rem;
+  line-height: 1.35;
+}
+
+.goal-cta .mini-label,
+.goal-cta .support-copy {
+  color: rgba(247, 250, 252, 0.78);
 }
 
 .field--wide {
@@ -377,6 +407,10 @@ textarea {
   margin-top: 8px;
 }
 
+.support-copy--tight {
+  margin: -2px 0 0;
+}
+
 @media (min-width: 900px) {
   .hero-grid,
   .platform-grid {
@@ -404,6 +438,10 @@ textarea {
   .platform-topbar {
     flex-direction: column;
   }
+
+  .primary-nav--goal {
+    justify-content: flex-start;
+  }
 }
 
 @media (max-width: 720px) {
@@ -425,7 +463,9 @@ textarea {
   }
 
   .intro {
-    display: none;
+    display: block;
+    font-size: 0.95rem;
+    line-height: 1.45;
   }
 
   .panel__stack h2,
@@ -443,5 +483,36 @@ textarea {
   .form-grid,
   .form-grid--two {
     grid-template-columns: 1fr;
+  }
+
+  .platform-topbar {
+    gap: 10px;
+    padding: 12px;
+  }
+
+  .primary-nav {
+    gap: 8px;
+  }
+
+  .primary-nav__link {
+    min-height: 34px;
+    padding: 0 10px;
+    font-size: 0.86rem;
+  }
+
+  .goal-form {
+    gap: 12px;
+  }
+
+  .goal-cta {
+    padding: 14px;
+  }
+
+  .goal-cta strong {
+    font-size: 1.04rem;
+  }
+
+  textarea {
+    min-height: 92px;
   }
 }
