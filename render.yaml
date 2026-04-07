@@ -1,8 +1,35 @@
 services:
   - type: web
-    name: english-training-frontend
+    name: english-learning-api
     runtime: node
+    rootDir: backend
     plan: free
     buildCommand: npm install
     startCommand: npm start
+    healthCheckPath: /api/health
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: DATA_DIR
+        value: /opt/render/project/src/data
+    disk:
+      name: learner-data
+      mountPath: /opt/render/project/src/data
+      sizeGB: 5
+
+  - type: web
+    name: english-learning-web
+    runtime: node
+    rootDir: frontend
+    plan: free
+    buildCommand: npm install && npm run build
+    startCommand: npm start
     healthCheckPath: /health
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: BACKEND_HOSTPORT
+        fromService:
+          name: english-learning-api
+          type: web
+          property: hostport
