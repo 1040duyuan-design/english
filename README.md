@@ -1,80 +1,51 @@
-# Goal-Driven English Learning Web App
+# Memory English v4
 
-A deployable full-stack MVP for a goal-driven English learning product aimed at Chinese learners.
+这一版重点不是继续堆页面，而是把下面四件事先落到代码里：
 
-## What it does
+- 完整测评框架
+- 问题标签与资源映射规则
+- 多用户数据模型
+- 学习产品方向的首版前后端结构
 
-- Lets learners input a real-world English goal
-- Diagnoses likely weaknesses across listening, speaking, reading, writing, pronunciation, and vocabulary
-- Adapts the plan to common Chinese learner pain points (weak speaking, weak listening, small vocabulary, strong Chinese accent, uneven ability)
-- Generates a staged roadmap plus today's learning plan
-- Stores progress and shows overall / stage / skill progress
-- Persists learner state on the backend using a JSON data store (disk-backed on Render when a persistent disk is attached)
+## 本版已实现
 
-## Monorepo structure
+### 前端
+- 目标输入页：不预设目标，只提供推荐写法
+- 半自适应测评页：词汇 / 听力 / 阅读中档试探后分流，写作与口语按支架强度分层
+- 结果页：输出分数、问题标签、资源建议、阶段计划
+- 访客用户本地保存 user_id，用于多用户隔离演示
 
-- `frontend/` React + Vite UI plus an Express production server that proxies `/api`
-- `backend/` Express API with JSON persistence
-- `render.yaml` Blueprint for two Render web services
+### 后端
+- 访客用户创建接口
+- 用户独立 dashboard 接口
+- bootstrap 接口：提交目标 + 测评，生成首版画像与计划
+- study session 接口：预留学习表现回写
+- framework 接口：返回测评、资源映射、多用户数据模型说明
 
-## Local development
+## 项目结构
 
-### Backend
+- `frontend/` React + Vite
+- `backend/` Express
+- `ASSESSMENT_FRAMEWORK.md`
+- `RESOURCE_MAPPING.md`
+- `DATA_MODEL.md`
 
+## 本地运行
+
+### backend
 ```bash
 cd backend
 npm install
 npm run dev
 ```
 
-Runs on `http://localhost:4000`
-
-### Frontend
-
+### frontend
 ```bash
 cd frontend
 npm install
 npm run dev
 ```
 
-Runs on `http://localhost:5173` and proxies `/api` to the backend.
+## Render
 
-## Local production check
-
-### Backend
-
-```bash
-cd backend
-npm install
-npm start
-```
-
-### Frontend
-
-```bash
-cd frontend
-npm install
-npm run build
-npm start
-```
-
-Runs on `http://localhost:3000`
-
-## Deploy on Render
-
-This repo includes a `render.yaml` Blueprint that defines:
-
-1. `english-learning-api` — Node web service with a persistent disk
-2. `english-learning-web` — Node web service that serves the built frontend and proxies `/api` to the backend
-
-### Notes
-
-- Backend data persists only under the mounted disk path.
-- The frontend receives the backend's private-network `hostport` via Blueprint env var wiring.
-- For a production AI planner, add an LLM provider behind the backend planner module.
-
-## Key product decisions in this MVP
-
-- The experience is organized around one main path: goal → assessment → staged roadmap → today's study → progress tracking.
-- Daily plans cover all four skills while tilting time toward the learner's weakest areas.
-- Feedback includes Chinese-learner-specific labels instead of only a generic level score.
+仓库已保留 `render.yaml`，可按前端一个 Web Service、后端一个 Web Service 部署。

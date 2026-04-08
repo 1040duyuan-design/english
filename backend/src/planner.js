@@ -997,6 +997,146 @@ function getThemeKit(track, theme) {
   };
 }
 
+function getDifficultyBand(score) {
+  if (score < 45) return 'support';
+  if (score < 70) return 'bridge';
+  return 'stretch';
+}
+
+function buildAdaptiveSkillPlan(skill, score, themeKit, tags, theme) {
+  const band = getDifficultyBand(score);
+  const levelMeta = {
+    support: {
+      label: '基础支撑版',
+      description: '先降低门槛，先学进去，再逐步提速。'
+    },
+    bridge: {
+      label: '过渡训练版',
+      description: '保持真实场景，同时控制难度和任务量。'
+    },
+    stretch: {
+      label: '挑战提升版',
+      description: '在接近真实使用的条件下练输出和反应。'
+    }
+  }[band];
+
+  const plans = {
+    listening: {
+      support: {
+        focus: '关键词识别 + 慢速理解',
+        materials: [
+          '先听慢速音频 2 遍，再对照文本抓关键词。',
+          `把听力文本拆成 2 句一组，先听懂 ${theme} 场景关键信息。`,
+          '完成 2 道基础选择题，再复听一次。'
+        ]
+      },
+      bridge: {
+        focus: '正常语速理解 + 信息提取',
+        materials: [
+          '先听正常语速，再回听重点句。',
+          '记录时间、地点、需求这类核心信息。',
+          '完成题目后，用 1 句英文复述听到的主旨。'
+        ]
+      },
+      stretch: {
+        focus: '真实语速反应 + 二次复述',
+        materials: [
+          '先盲听，再做题，不先看文本。',
+          '用 2 句英文总结主要信息和你的回应。',
+          '再听一遍，校正漏掉的细节。'
+        ]
+      }
+    },
+    speaking: {
+      support: {
+        focus: tags.includes('发音自然度偏弱') ? '重音节奏模仿' : '短句开口',
+        materials: [
+          '先跟读 4 句短句，重点模仿停顿和重音。',
+          '先看句型卡，再做 1 轮替换说。',
+          '允许先慢一点，先把句子完整说出来。'
+        ]
+      },
+      bridge: {
+        focus: '角色扮演 + 句型调用',
+        materials: [
+          '用情景对话做 2 轮角色扮演。',
+          '第 2 轮减少中文提示，只保留关键词。',
+          '录一遍自己的版本，和示范对比。'
+        ]
+      },
+      stretch: {
+        focus: '自由表达 + 自然度提升',
+        materials: [
+          '不看全文脚本，只看任务要求开口。',
+          '说完后，再补一个更自然、更礼貌的版本。',
+          '重点优化语调、连读和回应速度。'
+        ]
+      }
+    },
+    reading: {
+      support: {
+        focus: '句子拆解 + 关键信息定位',
+        materials: [
+          '先圈出时间、地点、动作这类关键词。',
+          '每次只读一小段，再做题。',
+          '把不认识的词控制在少量高频词。'
+        ]
+      },
+      bridge: {
+        focus: '信息整合 + 场景阅读',
+        materials: [
+          '先通读，再回看细节题。',
+          '练习从通知、邮件、菜单中抓主旨。',
+          '做完题后，用中文或英文说出核心信息。'
+        ]
+      },
+      stretch: {
+        focus: '快速理解 + 任务迁移',
+        materials: [
+          '限定时间完成阅读，再回答问题。',
+          '阅读后马上做一个口头或书面回应。',
+          '关注语气、隐含要求和礼貌表达。'
+        ]
+      }
+    },
+    writing: {
+      support: {
+        focus: '句型支架 + 短句输出',
+        materials: [
+          '直接套用句型框架写 2 句。',
+          '优先写完整句，不追求复杂。',
+          '写完后检查主语、动词和时间是否清楚。'
+        ]
+      },
+      bridge: {
+        focus: '场景写作 + 表达连贯',
+        materials: [
+          '用今天的话题写 3 句信息完整的话。',
+          '练习连接词，让表达更自然。',
+          '写完后替换 1 个更地道的表达。'
+        ]
+      },
+      stretch: {
+        focus: '真实输出 + 风格优化',
+        materials: [
+          '不看范文，独立完成一段短回复。',
+          '根据对象调整语气，比如礼貌、清楚、简洁。',
+          '完成后再对照参考表达升级用词。'
+        ]
+      }
+    }
+  };
+
+  return {
+    skill,
+    score,
+    band,
+    levelLabel: levelMeta.label,
+    description: levelMeta.description,
+    ...plans[skill][band]
+  };
+}
+
 function buildResourceStack(trackName, theme, tags) {
   const resources = [
     `情景对话：${trackName} / ${theme}`,
@@ -1052,6 +1192,12 @@ function generateDailyPlan(form, scores, tags, track, dayIndex = 1) {
       reading: themeKit.reading,
       writing: themeKit.writing,
       pronunciation: themeKit.pronunciation,
+      adaptiveTracks: {
+        listening: buildAdaptiveSkillPlan('listening', scores.listening, themeKit, tags, theme),
+        speaking: buildAdaptiveSkillPlan('speaking', scores.speaking, themeKit, tags, theme),
+        reading: buildAdaptiveSkillPlan('reading', scores.reading, themeKit, tags, theme),
+        writing: buildAdaptiveSkillPlan('writing', scores.writing, themeKit, tags, theme)
+      },
       tips: [
         tags.includes('词汇储备不足') ? '先学小词包，再进听力，能明显降低听不懂的感觉。' : '先看关键词，再去听和说，会更容易开口。',
         tags.includes('听力输入薄弱') ? '同一段内容先听慢速，再听正常语速，重点抓关键词。' : '注意把听到的表达直接复用到开口里。',
@@ -1272,4 +1418,36 @@ export function completeDay(profile) {
     ],
     todayPlan: nextPlan
   };
+}
+
+
+export function buildWeeklyPlan(profile) {
+  const currentDay = profile?.progress?.currentDay || 1;
+  const currentWeek = Math.ceil(currentDay / 5);
+  const weekStart = (currentWeek - 1) * 5 + 1;
+  const track = getPrimaryTrack(profile.form);
+  const tags = profile.assessment.tags || [];
+  const scores = profile.assessment.scores || {};
+  const completedDays = new Set((profile.history || []).map((item) => item.dayIndex));
+
+  return Array.from({ length: 5 }, (_, index) => {
+    const dayIndex = weekStart + index;
+    const dayPlan = dayIndex === currentDay
+      ? profile.todayPlan
+      : generateDailyPlan(profile.form, scores, tags, track, dayIndex);
+    const status = dayIndex < currentDay
+      ? (completedDays.has(dayIndex) ? 'done' : 'missed')
+      : dayIndex === currentDay
+        ? 'today'
+        : 'upcoming';
+
+    return {
+      dayIndex,
+      title: dayPlan.title,
+      theme: dayPlan.theme,
+      goal: dayPlan.goal,
+      estimatedMinutes: dayPlan.estimatedMinutes,
+      status
+    };
+  });
 }
