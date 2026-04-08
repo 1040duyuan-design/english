@@ -206,7 +206,7 @@ select,
   font-size: 1.3rem;
   letter-spacing: -0.03em;
 }
-.section-head p { margin: 0; color: var(--muted); }
+.section-head p { margin: 0; color: var(--muted); font-size: 0.95rem; }
 
 label {
   display: block;
@@ -722,6 +722,135 @@ select:focus {
   .vocab-list,
   .support-columns,
   .history-list {
+    grid-template-columns: 1fr;
+  }
+}
+
+
+.compact-copy {
+  max-width: 52ch;
+  margin-top: 10px;
+}
+
+.compact-overview-hero h2 {
+  margin-bottom: 10px;
+}
+
+.compact-stats-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.emoji-stat {
+  gap: 6px;
+}
+
+.emoji-stat small,
+.outcome-band-card small,
+.overview-stat small {
+  display: block;
+  margin-top: 6px;
+  color: var(--muted);
+  font-size: 0.85rem;
+  line-height: 1.5;
+}
+
+.compact-head h3 {
+  font-size: 1.12rem;
+}
+
+.compact-head p {
+  font-size: 0.9rem;
+}
+
+.top-priority-grid {
+  align-items: start;
+}
+
+.outcome-band-card,
+.timeline-progress-card {
+  padding: 16px 18px;
+  border-radius: 18px;
+  background: rgba(246, 248, 255, 0.95);
+  border: 1px solid rgba(86, 106, 146, 0.12);
+  margin-bottom: 14px;
+}
+
+.outcome-band-card strong {
+  display: block;
+  font-size: 1.05rem;
+  margin-bottom: 6px;
+}
+
+.outcome-list {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+.outcome-item {
+  min-height: 84px;
+  display: flex;
+  align-items: flex-start;
+}
+
+.compact-chip-wrap {
+  margin-top: 12px;
+}
+
+.chip.static.subtle {
+  background: rgba(52,87,246,0.08);
+}
+
+.compact-roadmap-grid {
+  gap: 10px;
+}
+
+.compact-week-list {
+  gap: 10px;
+}
+
+.compact-kpi-row {
+  margin-top: 14px;
+}
+
+.compact-next-panel .section-head {
+  margin-bottom: 14px;
+}
+
+.compact-next-card p {
+  margin: 8px 0 6px;
+}
+
+.timeline-head p {
+  margin: 4px 0 0;
+}
+
+.workspace-nav button {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.roadmap-card p,
+.week-item p,
+.task-card p,
+.next-action-card p,
+.dialogue-card p,
+.support-card p,
+.vocab-card p,
+.note-item,
+.metric-card p {
+  font-size: 0.95rem;
+}
+
+.today-hero p,
+.panel p.compact-copy {
+  max-width: 56ch;
+}
+
+@media (max-width: 900px) {
+  .compact-stats-grid,
+  .outcome-list {
     grid-template-columns: 1fr;
   }
 }

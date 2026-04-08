@@ -1132,8 +1132,11 @@ function buildAdaptiveSkillPlan(skill, score, themeKit, tags, theme) {
     score,
     band,
     levelLabel: levelMeta.label,
+    difficultyLabel: levelMeta.label,
     description: levelMeta.description,
-    ...plans[skill][band]
+    ...plans[skill][band],
+    trainingMode: plans[skill][band].focus,
+    reason: levelMeta.description
   };
 }
 
@@ -1256,6 +1259,61 @@ function generateDailyPlan(form, scores, tags, track, dayIndex = 1) {
   };
 }
 
+function buildExpectedOutcome(form, scores, track) {
+  const totalWeeks = Number(form.timelineWeeks) || 12;
+  const avgScore = Math.round((scores.listening + scores.speaking + scores.reading + scores.writing) / 4);
+  const weakest = Object.entries(scores)
+    .sort((a, b) => a[1] - b[1])
+    .slice(0, 2)
+    .map(([key]) => key);
+
+  let targetBand = '可完成基础到过渡层的真实使用';
+  if (avgScore >= 72) targetBand = '可进入更自然、更完整的真实表达';
+  else if (avgScore >= 55) targetBand = '可稳定完成高频场景沟通';
+
+  const scene = track.name;
+  const capabilityMap = {
+    '生活英语': [
+      '🛒 能在购物、点餐、问路等高频场景完成基础沟通',
+      '🏠 能看懂并回应简单通知、菜单、租房信息',
+      '🗣️ 能用 2-4 句完整表达需求，而不是只蹦单词',
+      '👂 能在慢速到正常语速下抓住关键信息'
+    ],
+    '工作英语': [
+      '💼 能做简短自我介绍，说明职责、进展和下一步',
+      '📧 能写清楚简短邮件、跟进和任务同步',
+      '🗣️ 能在会议或支持场景中说出完整回应',
+      '👂 能听懂高频工作表达中的核心信息'
+    ],
+    '社交表达': [
+      '🙂 能自然寒暄、接话并礼貌回应',
+      '🗨️ 能围绕熟悉话题说出连续几句完整表达',
+      '👂 能在轻社交场景中听懂主要意思',
+      '✍️ 能写简单消息、邀请和回复'
+    ],
+    '综合提升': [
+      '🌍 能处理高频生活和工作中的基础英语任务',
+      '📖 能更稳定地读懂短文本并提取信息',
+      '🗣️ 能围绕熟悉主题做短时表达',
+      '✍️ 能写出更完整、更自然的短句与短段'
+    ]
+  };
+
+  const boostTips = [];
+  if (weakest.includes('speaking')) boostTips.push('优先把“开口速度 + 句型调用”练稳');
+  if (weakest.includes('listening')) boostTips.push('先补可理解输入，再逐步提到正常语速');
+  if (weakest.includes('writing')) boostTips.push('写作先保完整，再提升自然度');
+  if (weakest.includes('reading')) boostTips.push('阅读继续训练“快抓关键词”的能力');
+
+  return {
+    targetBand,
+    estimateRule: '在完成率稳定 ≥ 80% 且阶段复测持续通过的前提下，下面是更可信的预期。',
+    canDo: capabilityMap[scene] || capabilityMap['综合提升'],
+    focusToUnlock: boostTips.slice(0, 2),
+    weeklyRhythm: `建议按 ${totalWeeks} 周完成，每周 5 天学习 + 1 次轻复盘。`
+  };
+}
+
 function buildAssessmentNarrative(scores, tags, form) {
   const weakest = Object.entries(scores).sort((a, b) => a[1] - b[1]);
   const strongest = Object.entries(scores).sort((a, b) => b[1] - a[1]);
@@ -1316,11 +1374,14 @@ export function buildInitialProfile(form, profileId) {
       track: track.name,
       stages,
       totalWeeks: Number(form.timelineWeeks) || 12,
-      currentStageId: 'stage-1'
+      totalDays: (Number(form.timelineWeeks) || 12) * 5,
+      currentStageId: 'stage-1',
+      expectedOutcome: buildExpectedOutcome(form, scores, track)
     },
     progress: {
       totalPercent: overallProgress,
       currentDay: 1,
+      currentWeek: 1,
       streakDays: 0,
       completedDays: 0,
       weeklyCompletionRate: 0,
@@ -1395,6 +1456,7 @@ export function completeDay(profile) {
     progress: {
       ...profile.progress,
       currentDay: nextDay,
+      currentWeek,
       completedDays: profile.progress.completedDays + (ratio >= 0.6 ? 1 : 0),
       streakDays: allTasksDone ? profile.progress.streakDays + 1 : profile.progress.streakDays,
       weeklyCompletionRate: Math.round(ratio * 100),

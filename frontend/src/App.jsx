@@ -388,6 +388,15 @@ function App() {
   const todayPlan = profile?.todayPlan || null;
   const progress = profile?.progress || null;
   const currentStage = overview?.currentStage || resultBundle?.plan?.stages?.find((stage) => stage.id === resultBundle?.plan?.currentStageId);
+  const timeProgress = overview?.timeProgress || {
+    currentWeek: Math.max(1, Math.ceil((progress?.currentDay || 1) / 5)),
+    totalWeeks: resultBundle?.plan?.totalWeeks || 12,
+    currentDay: progress?.currentDay || 1,
+    totalDays: (resultBundle?.plan?.totalWeeks || 12) * 5,
+    remainingWeeks: Math.max(0, (resultBundle?.plan?.totalWeeks || 12) - Math.max(1, Math.ceil((progress?.currentDay || 1) / 5))),
+    elapsedWeeksPercent: Math.min(100, Math.round((Math.max(1, Math.ceil((progress?.currentDay || 1) / 5)) / (resultBundle?.plan?.totalWeeks || 12)) * 100))
+  };
+  const expectedOutcome = overview?.expectedOutcome || resultBundle?.plan?.expectedOutcome || null;
   const completedTasks = todayPlan?.tasks?.filter((task) => task.completed).length || 0;
   const totalTasks = todayPlan?.tasks?.length || 0;
   const allTasksDone = totalTasks > 0 && completedTasks === totalTasks;
@@ -444,7 +453,7 @@ function App() {
       <header className="topbar refined">
         <div>
           <div className="eyebrow">Memory English</div>
-          <h1>更清楚地学习，而不是只做零散任务</h1>
+          <h1>看清路径，轻一点地学下去</h1>
         </div>
         <div className="user-pill compact">
           <strong>{user?.displayName || '访客学员'}</strong>
@@ -741,55 +750,65 @@ function App() {
       {step === 'workspace' && resultBundle && profile && (
         <section className="workspace-shell">
           <div className="workspace-nav">
-            <button className={workspaceView === 'overview' ? 'active' : ''} onClick={() => setWorkspaceView('overview')}>我的学习</button>
-            <button className={workspaceView === 'today' ? 'active' : ''} onClick={() => setWorkspaceView('today')}>今日学习</button>
-            <button className={workspaceView === 'report' ? 'active' : ''} onClick={() => setWorkspaceView('report')}>测评报告</button>
+            <button className={workspaceView === 'overview' ? 'active' : ''} onClick={() => setWorkspaceView('overview')}>🗺️ 我的学习</button>
+            <button className={workspaceView === 'today' ? 'active' : ''} onClick={() => setWorkspaceView('today')}>✅ 今日学习</button>
+            <button className={workspaceView === 'report' ? 'active' : ''} onClick={() => setWorkspaceView('report')}>📊 测评报告</button>
           </div>
 
           {workspaceView === 'overview' && (
             <>
-              <section className="overview-hero-card panel">
+              <section className="overview-hero-card panel compact-overview-hero">
                 <div>
-                  <span className="badge">学习总览</span>
+                  <span className="badge">🗺️ 我的学习</span>
                   <h2>{form.goal || profile.form.goal}</h2>
-                  <p>{profile.assessment.summary}</p>
+                  <p className="compact-copy">现在是第 {timeProgress.currentWeek} / {timeProgress.totalWeeks} 周，继续按节奏完成，就会更接近下面这份预期成果。</p>
                   <div className="hero-actions">
-                    <button className="primary-btn" onClick={() => setWorkspaceView('today')}>继续今天的学习</button>
-                    <button className="ghost-btn" onClick={() => setWorkspaceView('report')}>查看测评报告</button>
+                    <button className="primary-btn" onClick={() => setWorkspaceView('today')}>继续今天</button>
+                    <button className="ghost-btn" onClick={() => setWorkspaceView('report')}>看报告</button>
                   </div>
                 </div>
-                <div className="overview-stats-grid">
-                  <div className="overview-stat"><span>总进度</span><strong>{progress.totalPercent}%</strong></div>
-                  <div className="overview-stat"><span>当前阶段</span><strong>{currentStage?.name || '阶段 1'}</strong></div>
-                  <div className="overview-stat"><span>当前学习日</span><strong>Day {progress.currentDay}</strong></div>
-                  <div className="overview-stat"><span>下一节点</span><strong>{overview?.nextMilestone || '本周复盘'}</strong></div>
+                <div className="overview-stats-grid compact-stats-grid">
+                  <div className="overview-stat emoji-stat"><span>⏱️ 时间进度</span><strong>第 {timeProgress.currentWeek} / {timeProgress.totalWeeks} 周</strong><small>{timeProgress.remainingWeeks} 周待完成</small></div>
+                  <div className="overview-stat emoji-stat"><span>📈 总进度</span><strong>{progress.totalPercent}%</strong><small>{timeProgress.currentDay} / {timeProgress.totalDays} 学习日</small></div>
+                  <div className="overview-stat emoji-stat"><span>🎯 当前阶段</span><strong>{currentStage?.name || '阶段 1'}</strong><small>{overview?.nextMilestone || '本周复盘'}</small></div>
+                  <div className="overview-stat emoji-stat"><span>🔥 学习状态</span><strong>{progress.streakDays} 天连续</strong><small>本周完成率 {progress.weeklyCompletionRate}%</small></div>
                 </div>
               </section>
 
-              <div className="panel-grid two-col">
+              <div className="panel-grid two-col top-priority-grid">
                 <div className="panel">
-                  <div className="section-head">
-                    <h3>整体学习路径</h3>
-                    <p>让用户看得到自己在整条学习路径上的位置，而不只是今天做了几个任务。</p>
+                  <div className="section-head compact-head">
+                    <h3>🎓 学完后，预计你能做到什么</h3>
+                    <p>不是承诺分数，而是更可感知的“能做什么”。</p>
                   </div>
-                  <div className="roadmap-grid">
-                    {resultBundle.plan.stages.map((stage) => (
-                      <StageRoadmapCard
-                        key={stage.id}
-                        stage={stage}
-                        progress={profile.progress.stageProgress?.[stage.id] || 0}
-                        active={stage.id === resultBundle.plan.currentStageId}
-                      />
-                    ))}
+                  <div className="outcome-band-card">
+                    <strong>{expectedOutcome?.targetBand || '可稳定完成高频场景沟通'}</strong>
+                    <small>{expectedOutcome?.estimateRule || '实际结果会随着学习完成率和阶段复测继续校准。'}</small>
+                  </div>
+                  <div className="outcome-list">
+                    {(expectedOutcome?.canDo || []).map((item) => <div key={item} className="note-item outcome-item">{item}</div>)}
+                  </div>
+                  <div className="chips static-wrap compact-chip-wrap">
+                    {(expectedOutcome?.focusToUnlock || []).map((tip) => <span key={tip} className="chip static subtle">{tip}</span>)}
                   </div>
                 </div>
 
                 <div className="panel">
-                  <div className="section-head">
-                    <h3>本周安排</h3>
-                    <p>这一周你会练什么、练到哪一天，一眼就能看懂。</p>
+                  <div className="section-head compact-head">
+                    <h3>📅 时间路径</h3>
+                    <p>你现在在整条路径上的位置。</p>
                   </div>
-                  <div className="week-list">
+                  <div className="timeline-progress-card">
+                    <div className="progress-row-head timeline-head">
+                      <div>
+                        <strong>周进度</strong>
+                        <p>{timeProgress.currentWeek} / {timeProgress.totalWeeks} 周</p>
+                      </div>
+                      <span>{timeProgress.elapsedWeeksPercent}%</span>
+                    </div>
+                    <div className="progress-track"><div style={{ width: `${timeProgress.elapsedWeeksPercent}%` }} /></div>
+                  </div>
+                  <div className="week-list compact-week-list">
                     {(overview?.weeklyPlan || []).map((item) => (
                       <div key={item.dayIndex} className={`week-item ${item.status}`}>
                         <div>
@@ -808,64 +827,62 @@ function App() {
 
               <div className="panel-grid two-col">
                 <div className="panel">
-                  <div className="section-head">
-                    <h3>能力进展</h3>
-                    <p>不只看分数，也看阶段中的实际推进情况。</p>
+                  <div className="section-head compact-head">
+                    <h3>🧭 整体学习路径</h3>
+                    <p>看阶段，不看大段说明。</p>
                   </div>
-                  <div className="progress-stack">
-                    <ProgressRow label="听力" value={profile.progress.skillProgress.listening} helper={`当前测评 ${profile.assessment.scores.listening} 分`} />
-                    <ProgressRow label="口语" value={profile.progress.skillProgress.speaking} helper={`当前测评 ${profile.assessment.scores.speaking} 分`} />
-                    <ProgressRow label="阅读" value={profile.progress.skillProgress.reading} helper={`当前测评 ${profile.assessment.scores.reading} 分`} />
-                    <ProgressRow label="写作" value={profile.progress.skillProgress.writing} helper={`当前测评 ${profile.assessment.scores.writing} 分`} />
+                  <div className="roadmap-grid compact-roadmap-grid">
+                    {resultBundle.plan.stages.map((stage) => (
+                      <StageRoadmapCard
+                        key={stage.id}
+                        stage={stage}
+                        progress={profile.progress.stageProgress?.[stage.id] || 0}
+                        active={stage.id === resultBundle.plan.currentStageId}
+                      />
+                    ))}
                   </div>
                 </div>
 
                 <div className="panel">
-                  <div className="section-head">
-                    <h3>当前重点问题</h3>
-                    <p>这些标签决定了为什么系统最近会这样安排任务和资源。</p>
+                  <div className="section-head compact-head">
+                    <h3>📊 四项进展</h3>
+                    <p>每项单独看，方便知道重点补哪里。</p>
                   </div>
-                  <div className="chips static-wrap">
-                    {profile.assessment.tags.map((tag) => <span key={tag} className="chip static">{tag}</span>)}
-                  </div>
-                  <div className="note-list">
-                    {profile.assessment.feedback.map((item) => <div key={item} className="note-item">{item}</div>)}
-                  </div>
-                  <div className="mini-kpi-row">
-                    <div className="mini-kpi"><span>连续学习</span><strong>{progress.streakDays} 天</strong></div>
-                    <div className="mini-kpi"><span>本周完成率</span><strong>{progress.weeklyCompletionRate}%</strong></div>
-                    <div className="mini-kpi"><span>已完成天数</span><strong>{progress.completedDays} 天</strong></div>
+                  <div className="progress-stack">
+                    <ProgressRow label="听力" value={profile.progress.skillProgress.listening} helper={`测评 ${profile.assessment.scores.listening} 分`} />
+                    <ProgressRow label="口语" value={profile.progress.skillProgress.speaking} helper={`测评 ${profile.assessment.scores.speaking} 分`} />
+                    <ProgressRow label="阅读" value={profile.progress.skillProgress.reading} helper={`测评 ${profile.assessment.scores.reading} 分`} />
+                    <ProgressRow label="写作" value={profile.progress.skillProgress.writing} helper={`测评 ${profile.assessment.scores.writing} 分`} />
                   </div>
                 </div>
               </div>
 
               <div className="panel-grid two-col">
                 <div className="panel">
-                  <div className="section-head">
-                    <h3>最近的学习记录</h3>
-                    <p>完成情况会回写到画像里，作为下一轮难度校准的依据。</p>
+                  <div className="section-head compact-head">
+                    <h3>🏷️ 当前重点</h3>
+                    <p>系统最近为什么这样安排，一眼看懂。</p>
                   </div>
-                  <div className="history-list">
-                    {(overview?.recentHistory?.length ? overview.recentHistory : [{ dayIndex: progress.currentDay, theme: todayPlan?.theme, completionRate: progress.weeklyCompletionRate, completedAt: profile.updatedAt }]).map((item) => (
-                      <div key={`${item.dayIndex}-${item.completedAt || item.theme}`} className="history-item">
-                        <strong>Day {item.dayIndex}</strong>
-                        <p>{item.theme}</p>
-                        <span>{item.completionRate || 0}% 完成</span>
-                      </div>
-                    ))}
+                  <div className="chips static-wrap compact-chip-wrap">
+                    {profile.assessment.tags.map((tag) => <span key={tag} className="chip static">{tag}</span>)}
+                  </div>
+                  <div className="mini-kpi-row compact-kpi-row">
+                    <div className="mini-kpi"><span>✅ 已完成</span><strong>{progress.completedDays} 天</strong></div>
+                    <div className="mini-kpi"><span>🔥 连续学习</span><strong>{progress.streakDays} 天</strong></div>
+                    <div className="mini-kpi"><span>📌 本周完成率</span><strong>{progress.weeklyCompletionRate}%</strong></div>
                   </div>
                 </div>
 
-                <div className="panel next-action-panel">
-                  <div className="section-head">
-                    <h3>下一步</h3>
-                    <p>总览页不是终点，它应该自然把你带回今天要做的事。</p>
+                <div className="panel next-action-panel compact-next-panel">
+                  <div className="section-head compact-head">
+                    <h3>➡️ 下一步</h3>
+                    <p>别停在总览页，继续今天最重要。</p>
                   </div>
-                  <div className="next-action-card">
-                    <span>今天要学</span>
+                  <div className="next-action-card compact-next-card">
+                    <span>今天主题</span>
                     <strong>{todayPlan?.theme}</strong>
-                    <p>{todayPlan?.goal}</p>
-                    <small>{completedTasks}/{totalTasks} 个任务已完成</small>
+                    <p>{completedTasks}/{totalTasks} 个任务已完成</p>
+                    <small>{todayPlan?.goal}</small>
                   </div>
                   <button className="primary-btn full-width" onClick={() => setWorkspaceView('today')}>进入今日学习</button>
                 </div>

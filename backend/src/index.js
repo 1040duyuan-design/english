@@ -80,6 +80,12 @@ function enrichDashboardPayload(dashboard) {
     (stage) => stage.id === dashboard.profile.plan.currentStageId
   ) || dashboard.profile.plan.stages[0];
 
+  const totalWeeks = dashboard.profile.plan.totalWeeks || 12;
+  const totalDays = dashboard.profile.plan.totalDays || totalWeeks * 5;
+  const currentDay = dashboard.profile.progress.currentDay || 1;
+  const currentWeek = Math.min(totalWeeks, Math.max(1, Math.ceil(currentDay / 5)));
+  const elapsedWeeksPercent = Math.min(100, Math.round((currentWeek / totalWeeks) * 100));
+
   return {
     ...dashboard,
     overview: {
@@ -89,13 +95,22 @@ function enrichDashboardPayload(dashboard) {
         dashboard.profile.progress.currentDay % 5 === 0
           ? '今天适合做阶段复盘或微测评'
           : `${5 - ((dashboard.profile.progress.currentDay - 1) % 5 + 1)} 天后进入本周复盘`,
-      recentHistory: (dashboard.profile.history || []).slice(-5).reverse()
+      recentHistory: (dashboard.profile.history || []).slice(-5).reverse(),
+      timeProgress: {
+        currentWeek,
+        totalWeeks,
+        currentDay,
+        totalDays,
+        remainingWeeks: Math.max(0, totalWeeks - currentWeek),
+        elapsedWeeksPercent
+      },
+      expectedOutcome: dashboard.profile.plan.expectedOutcome || null
     }
   };
 }
 
 app.get('/api/health', (_req, res) => {
-  res.json({ ok: true, service: 'english-learning-api', version: 'v5' });
+  res.json({ ok: true, service: 'english-learning-api', version: 'v6' });
 });
 
 app.get('/api/framework', (_req, res) => {
@@ -157,7 +172,16 @@ app.post('/api/users/:userId/bootstrap', (req, res) => {
       currentStage: profile.plan.stages.find((stage) => stage.id === profile.plan.currentStageId) || profile.plan.stages[0],
       weeklyPlan: buildWeeklyPlan(profile),
       nextMilestone: '4 天后进入本周复盘',
-      recentHistory: []
+      recentHistory: [],
+      timeProgress: {
+        currentWeek: 1,
+        totalWeeks: profile.plan.totalWeeks,
+        currentDay: 1,
+        totalDays: profile.plan.totalDays,
+        remainingWeeks: Math.max(0, profile.plan.totalWeeks - 1),
+        elapsedWeeksPercent: Math.min(100, Math.round((1 / profile.plan.totalWeeks) * 100))
+      },
+      expectedOutcome: profile.plan.expectedOutcome || null
     }
   });
 });
